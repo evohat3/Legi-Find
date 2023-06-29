@@ -7,6 +7,19 @@ const searchSchema  = new Schema({
         type: Number,
         required: true,
         unique: true
+    },
+    bill_title: {
+        type: String,
+        required: true,
+    },
+    state: {
+        type: String
+    },
+    text_url: {
+        type: String
+    },
+    save_time: {
+        type: Number
     }
 })
 
