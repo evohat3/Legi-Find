@@ -39,7 +39,7 @@ function ResponsiveAppBar() {
     <AppBar position="static" sx={{ backgroundColor: 'primary', border: 1, borderColor: 'text.primary' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1}} />
           <Typography
             variant="h6"
             noWrap
@@ -126,6 +126,8 @@ function ResponsiveAppBar() {
             ))}
           </Box>
 
+
+          <Typography variant="h5" sx={{ p:4 }}> Sign in </Typography>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -155,6 +157,7 @@ function ResponsiveAppBar() {
               ))}
             </Menu>
           </Box>
+          <Typography variant="h5" sx={{ p:4 }}> Sign Out </Typography>
         </Toolbar>
       </Container>
     </AppBar>
