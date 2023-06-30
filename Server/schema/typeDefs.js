@@ -5,10 +5,10 @@ const typeDefs = gql`
     hello: String
   }
 
-  type User {
-  _id: ID
-  email: String
-  }
-`;
 
+`;
+  // type User {
+  // _id: ID
+  // email: String
+  // }
 module.exports = typeDefs
