@@ -1,13 +1,15 @@
 import React from 'react'
-import { Typography } from 'material-ui/CircularProgress'
+import { Typography } from '@material-ui/core'
 
 export default function Home() {
     return (
+        <div>
         <Typography   
         variant='h3'
         color='primary'
         align='center'>
-        Notes page Typography
+        Home Page
         </Typography>
+        </div>
     )
 }
