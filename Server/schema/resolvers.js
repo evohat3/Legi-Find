@@ -5,7 +5,7 @@
 const resolvers = {
   Query: {
     hello: () => 'Hello, World!'
-  },
+  }
   // Mutation: {
   //   addUser: async (parent, args) => {
   //     const user = await User.create(args);

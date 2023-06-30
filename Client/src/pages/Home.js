@@ -1,4 +1,4 @@
-import react from 'react'
+import React from 'react'
 import { Typography } from 'material-ui/CircularProgress'
 
 export default function Home() {
