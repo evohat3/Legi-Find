@@ -1,11 +1,11 @@
-// const { AuthenticationError } = require('apollo-server-express');
-// const { User, Search } = require('../models');
-// const { signToken } = require('../utils/auth');
+const { AuthenticationError } = require('apollo-server-express');
+const { User, Search } = require('../models');
+const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
     hello: () => 'Hello, World!'
-  }
+  }//*,
   // Mutation: {
   //   addUser: async (parent, args) => {
   //     const user = await User.create(args);
