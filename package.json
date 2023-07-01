@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.12.4",
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.3.1",
+    "force": "0.0.3"
   }
 }
