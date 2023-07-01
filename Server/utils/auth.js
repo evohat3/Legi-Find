@@ -1,9 +1,8 @@
-const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken')
 
-require('dotenv').config();
-
-const secret = process.env.SECRET_KEY;
-const expiration = process.env.EXPIRATION;
+require('dotenv').config()
+const secret = process.env.SECRET_KEY
+const expiration = process.env.EXPIRATION_TIME
 
 console.log(secret)
 console.log(expiration)
@@ -11,30 +10,30 @@ console.log(expiration)
 module.exports = {
   authMiddleware: function ({ req }) {
     // allows token to be sent via req.body, req.query, or headers
-    let token = req.body.token || req.query.token || req.headers.authorization;
+    let token = req.body.token || req.query.token || req.headers.authorization
 
     // ["Bearer", "<tokenvalue>"]
     if (req.headers.authorization) {
-      token = token.split(' ').pop().trim();
+      token = token.split(' ').pop().trim()
     }
 
     if (!token) {
-      return req;
+      return req
     }
 
     try {
       console.log(secret)
-      const { data } = jwt.verify(token, secret, { maxAge: expiration });
-      req.user = data;
+      const { data } = jwt.verify(token, secret, { maxAge: expiration })
+      req.user = data
     } catch {
-      console.log('Invalid token');
+      console.log('Invalid token')
     }
 
-    return req;
+    return req
   },
   signToken: function ({ email, password }) {
-    const payload = { email, password };
+    const payload = { email, password }
 
-    return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
-  },
-};
+    return jwt.sign({ data: payload }, secret, { expiresIn: expiration })
+  }
+}

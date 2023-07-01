@@ -157,7 +157,6 @@ function ResponsiveAppBar() {
               ))}
             </Menu>
           </Box>
-          <Typography variant="h5" sx={{ p:4 }}> Sign Out </Typography>
         </Toolbar>
       </Container>
     </AppBar>
