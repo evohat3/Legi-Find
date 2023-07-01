@@ -12,9 +12,11 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import { Link } from 'react-router-dom';
 
-const pages = ['Home', 'Search', 'News'];
+const pages = ['Home','Search', 'News', 'SignUp', 'Login'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -36,7 +38,7 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: 'primary', border: 1, borderColor: 'text.primary' }}>
+    <AppBar position="static" sx={{ backgroundcolor: 'primary', border: 1, bordercolor: 'text.primary' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1}} />
@@ -88,7 +90,10 @@ function ResponsiveAppBar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem 
+                  key={page} onClick={handleCloseNavMenu} 
+                  component={page === 'Login' || page === 'SignUp' || page === 'Home'? Link : 'button'}
+                  to={page === 'Login' ? '/login' : page === 'SignUp' ? '/signup' : page === 'Home' ? '/' : undefined}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
@@ -99,7 +104,7 @@ function ResponsiveAppBar() {
             variant="h5"
             noWrap
             component="a"
-            href=""
+            href="/"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -118,20 +123,22 @@ function ResponsiveAppBar() {
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block', '&:hover':{backgroundColor: 'white', color:'black'} }}
+                component={page === 'Login' || page === 'SignUp' || page === 'Home'? Link : 'button'}
+                to={page === 'Login' ? '/login' : page === 'SignUp' ? '/signup' : page === 'Home' ? '/' : undefined}
+                sx={{ my: 2, color: 'white', display: 'block', '&:hover':{backgroundcolor: 'white', color:'black'} }}
                 
               >
                 {page}
               </Button>
             ))}
           </Box>
+                  
 
 
-          <Typography variant="h5" sx={{ p:4 }}> Sign in </Typography>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Remy Sharp" src="https://i.imgur.com/IAj05FO.png" sx={{border: 3, color: 'primary.'}} />
               </IconButton>
             </Tooltip>
             <Menu
