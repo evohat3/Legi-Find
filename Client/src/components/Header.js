@@ -1,5 +1,6 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, makeStyles } from '@material-ui/core';
+import { AppBar, Toolbar, makeStyles } from '@material-ui/core';
+
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -16,9 +17,7 @@ const Header = () => {
   return (
     <AppBar position="static" className={classes.appBar}>
       <Toolbar>
-        <Typography variant="h6" align="center" className={classes.title}>
-          This is The Header
-        </Typography>
+
       </Toolbar>
     </AppBar>
   );
