@@ -9,4 +9,14 @@ db.once('open', async () =>{
         email: 'test@gmail.com',
         password: 'password123'
     })
+
+    await User.create({
+        email: 'test1@gmail.com',
+        password: 'password123'
+    })
+
+    await User.create({
+        email: 'test12@gmail.com',
+        password: 'password123'
+    })
 })

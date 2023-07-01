@@ -4,7 +4,10 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    hello: () => 'Hello, World!'
+    hello: () => 'Hello, World!',
+    findUser: async (parent, { email }) => { 
+      return User.findOne({ email });
+ }
   },
    Mutation: {
      addUser: async (parent, args) => {
@@ -27,8 +30,9 @@ const resolvers = {
          throw new AuthenticationError('Incorrect credentials');
        }
 
+       
        const correctPw = await user.isCorrectPassword(password);
-
+       
        if(!correctPw) {
          throw new AuthenticationError('Incorrect credentials');
       }
