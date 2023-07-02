@@ -1,8 +1,10 @@
 import React from 'react';
-import { AppBar, Toolbar, makeStyles } from '@material-ui/core';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import { styled } from '@mui/system';
 
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = styled((theme) => ({
   appBar: {
     backgroundColor: theme.palette.primary.main,
   },

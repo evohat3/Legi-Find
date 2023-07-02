@@ -4,7 +4,7 @@
   "description": "",
   "main": "server/server.js",
   "scripts": {
-    "heroku-postbuild": "cd server && npm install --force && cd ../client && npm install --force && npm run build",
+    "heroku-postbuild": "cd server && npm i && cd ../client && npm i && npm run build",
     "start": "node server/server.js --ignore client",
     "develop": "concurrently \"cd server && npm run watch \" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i",
@@ -29,7 +29,6 @@
     "nodemon": "^1.14.9"
   },
   "dependencies": {
-    "@material-ui/core": "^4.12.4",
     "dotenv": "^16.3.1",
     "force": "0.0.3"
   }

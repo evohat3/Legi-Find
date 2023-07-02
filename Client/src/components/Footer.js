@@ -1,7 +1,9 @@
 import * as React from 'react';
-import { Container, Typography, makeStyles } from '@material-ui/core';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import { styled } from '@mui/system';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = styled((theme) => ({
   footer: {
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.primary.contrastText,
