@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
-// import {styled} from '@mui/';
+import { makeStyles } from '@mui/styles';
 
 // const useStyles = makeStyles((theme) => ({
 //   footer: {
@@ -16,8 +16,7 @@ const Footer = () => {
   // const classes = useStyles();
 
   return (
-    //  this is the props for the footer className={classes.footer}
-    <footer>
+    <footer /**className={classes.footer}*/>
       <Container maxWidth="lg">
         <Typography variant="body2" align="center">
           This is the footer content.
