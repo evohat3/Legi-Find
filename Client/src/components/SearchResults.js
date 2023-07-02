@@ -10,21 +10,21 @@ import ListItemText from '@mui/material/ListItemText';
 import { palette } from '@mui/system';
 
 
-// const useStyles = makeStyles((theme) => ({
-//     stack: {
-//       backgroundColor:
-//     },
+const useStyles = makeStyles((theme) => ({
+    stack: {
+    // backgroundColor:
+    }
     
-//   }));
+  }));
 
 
   const SearchResults = () => {
-    // const classes = useStyles();
+    const classes = useStyles();
   
     return (
 
     <Box
-    /**classname={classes.stack}*/
+    classname={classes.stack}
     >
         <Grid 
             container

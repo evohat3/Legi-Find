@@ -4,20 +4,20 @@ import Toolbar from '@mui/material/Toolbar'
 import { makeStyles } from '@mui/styles';;
 
 
-// const useStyles = makeStyles((theme) => ({
-//   appBar: {
-//     backgroundColor: theme.palette.primary.main,
-//   },
-//   title: {
-//     flexGrow: 1,
-//   },
-// }));
+const useStyles = makeStyles((theme) => ({
+  appBar: {
+    // backgroundColor: theme.palette.primary.main,
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));
 
 const Header = () => {
-  // const classes = useStyles();
+  const classes = useStyles();
 
   return (
-    <AppBar position="static" /**className={classes.appBar} */ > 
+    <AppBar position="static" className={classes.appBar}  > 
       <Toolbar>
 
       </Toolbar>
