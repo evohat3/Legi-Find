@@ -92,8 +92,8 @@ function ResponsiveAppBar() {
               {pages.map((page) => (
                 <MenuItem 
                   key={page} onClick={handleCloseNavMenu} 
-                  component={page === 'Login' || page === 'SignUp' || page === 'Home'? Link : 'button'}
-                  to={page === 'Login' ? '/login' : page === 'SignUp' ? '/signup' : page === 'Home' ? '/' : undefined}>
+                  component={page === 'Login' || page === 'SignUp' || page === 'Home'|| page === 'Search' ? Link : 'button'}
+                  to={page === 'Login' ? '/login' : page === 'SignUp' ? '/signup' : page === 'Home' ? '/' : page === 'Search'? '/search': undefined} >
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
@@ -123,8 +123,8 @@ function ResponsiveAppBar() {
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                component={page === 'Login' || page === 'SignUp' || page === 'Home'? Link : 'button'}
-                to={page === 'Login' ? '/login' : page === 'SignUp' ? '/signup' : page === 'Home' ? '/' : undefined}
+                component={page === 'Login' || page === 'SignUp' || page === 'Home' || page === 'Search' ? Link : 'button'}
+                to={page === 'Login' ? '/login' : page === 'SignUp' ? '/signup' : page === 'Home' ? '/': page === 'Search' ? '/search' : undefined}
                 sx={{ my: 2, color: 'white', display: 'block', '&:hover':{backgroundcolor: 'white', color:'black'} }}
                 
               >
