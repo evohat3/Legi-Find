@@ -10,15 +10,11 @@ import { palette } from '@mui/system';
 
 
 
-
-
   const SearchResults = () => {
   
     return (
 
-    <Box
-    classname={classes.stack}
-    >
+    <Box >
         <Grid 
             container
             spacing={0}

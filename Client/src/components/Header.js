@@ -8,7 +8,7 @@ import Toolbar from '@mui/material/Toolbar'
 const Header = () => {
 
   return (
-    <AppBar position="static" className={classes.appBar}  > 
+    <AppBar position="static"   > 
       <Toolbar>
 
       </Toolbar>
