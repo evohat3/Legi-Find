@@ -4,7 +4,7 @@
   "description": "",
   "main": "server/server.js",
   "scripts": {
-    "heroku-postbuild": "cd server && npm install --force && cd ../client && npm install --force && npm run build",
+    "heroku-postbuild": "cd server && npm i && cd ../client && npm i && npm run build",
     "start": "node server/server.js --ignore client",
     "develop": "concurrently \"cd server && npm run watch \" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i",
@@ -12,7 +12,8 @@
     "build": "cd client && npm run build"
   },
   "engines": {
-    "node": "14.x"
+    "node": "18.x",
+    "npm": "9.x"
   },
   "author": "",
   "license": "ISC",
