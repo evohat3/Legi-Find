@@ -1,23 +1,24 @@
 import React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import { styled } from '@mui/system';
+import AppBar  from '@mui/material/AppBar'
+import Toolbar from '@mui/material/Toolbar'
+// import makeStyles from '@material-ui/core';
 
 
-const useStyles = styled((theme) => ({
-  appBar: {
-    backgroundColor: theme.palette.primary.main,
-  },
-  title: {
-    flexGrow: 1,
-  },
-}));
+// const useStyles = makeStyles((theme) => ({
+//   appBar: {
+//     backgroundColor: theme.palette.primary.main,
+//   },
+//   title: {
+//     flexGrow: 1,
+//   },
+// }));
 
 const Header = () => {
-  const classes = useStyles();
+  // const classes = useStyles();
 
   return (
-    <AppBar position="static" className={classes.appBar}>
+    // this is a prop for the AppBar className={classes.appBar}
+    <AppBar position="static"> 
       <Toolbar>
 
       </Toolbar>
