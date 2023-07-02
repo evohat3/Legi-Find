@@ -3,6 +3,7 @@ import { TextField, Typography } from '@material-ui/core'
 import Container from '@mui/material/Container'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
+import SearchResults from '../components/SearchResults'
 
 export default function Search() {
     return (
@@ -28,6 +29,7 @@ export default function Search() {
             
             <TextField id="outlined-basic" label="Outlined" variant="outlined" /> 
             </Grid>  
+            <SearchResults></SearchResults>
         </Box>
     )
 }
