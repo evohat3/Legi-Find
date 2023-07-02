@@ -1,12 +1,13 @@
-import React from 'react'
-import { TextField, Typography } from '@material-ui/core'
+import * as React from 'react'
+import Typography  from '@mui/material/Typography'
+import TextField from '@mui/material/TextField'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import SearchResults from '../components/SearchResults'
 
 export default function LogOut() {
     return (
-        <Box 
+        <Box    
             sx={{
                 width: '100%',
                 height: '100%',

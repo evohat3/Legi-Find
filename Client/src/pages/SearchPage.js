@@ -1,7 +1,7 @@
 import React from 'react'
 import TextField  from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
-import Container from '@mui/material/Container'
+// import Container from '@mui/material/Container'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import SearchResults from '../components/SearchResults'
@@ -28,7 +28,7 @@ export default function Search() {
                 <div>Search</div>
             </Typography>     
             
-            <TextField id="outlined-basic" label="Outlined" variant="outlined" /> 
+            <TextField id="outlined-basic" label="Enter your search here" variant="outlined" size="lg"/> 
             </Grid>  
             <SearchResults></SearchResults>
         </Box>
