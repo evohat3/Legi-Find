@@ -125,7 +125,7 @@ function ResponsiveAppBar() {
                 onClick={handleCloseNavMenu}
                 component={page === 'Login' || page === 'SignUp' || page === 'Home'? Link : 'button'}
                 to={page === 'Login' ? '/login' : page === 'SignUp' ? '/signup' : page === 'Home' ? '/' : undefined}
-                sx={{ my: 2, color: 'white', display: 'block', '&:hover':{backgroundcolor: 'white', color:'black'} }}
+                sx={{ my: 2, color: 'white', display: 'block', '&:hover':{backgroundColor: 'white', color:'black'} }}
                 
               >
                 {page}
