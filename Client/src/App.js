@@ -6,6 +6,7 @@ import Header from './components/Header'
 import Login from './pages/LoginPage'
 import Signup from './pages/SignupPage'
 import Search from './pages/SearchPage'
+import LogOut from './pages/LogOut'
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
       <Route path="/login" element={<Login /> } />
       <Route path="/signup" element={<Signup /> } />
       <Route path="/search" element={<Search />} />
+      <Route path="/logout" element={<LogOut />} />
       </Routes>
       <Footer />
     </Router>
