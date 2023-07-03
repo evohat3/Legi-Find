@@ -7,6 +7,7 @@ import Login from './pages/LoginPage'
 import Signup from './pages/SignupPage'
 import Search from './pages/SearchPage'
 import LogOut from './pages/LogOut'
+import Account from './pages/AccountPage'
 
 
 function App() {
@@ -21,6 +22,8 @@ function App() {
       <Route path="/signup" element={<Signup /> } />
       <Route path="/search" element={<Search />} />
       <Route path="/logout" element={<LogOut />} />
+      <Route path="/account" element={<Account />} />
+
       </Routes>
       <Footer />
     </Router>
