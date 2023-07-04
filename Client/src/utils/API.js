@@ -68,9 +68,6 @@ export const getBill = async (LEGI_KEY, bill_id) => {
       });
 }
 
-
-
-
 //search person by id
 export const getPerson = async (LEGI_KEY, people_id ) => {
     let response = await fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getPerson&id=${people_id}` ,{
