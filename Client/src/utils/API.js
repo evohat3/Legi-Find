@@ -39,3 +39,42 @@ export const getSearchSession = (LEGI_KEY, session_id, query) => {
             }
       });
 }
+
+
+//searches for list of legislators in a paticular session
+export const getSessionPeople = (session_id) => {
+    return fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getSessionPeople=${session_id}` ,{
+        body: JSON.stringify({
+
+        }),
+        header: {
+            'Content-type': 'application/json',
+            }
+      });
+}
+
+//gets list of session that are avalible, need to modify state variable to filter state. Will be "&state=STATE" after session_id
+export const getSessionList = (LEGI_KEY) => {
+    return fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getSessionList` ,{
+        body: JSON.stringify({
+
+        }),
+        header: {
+            'Content-type': 'application/json',
+            }
+      });
+}
+
+//sets a monitor on a paticular pull for updates on it
+//for action: set = montior, remove = stop watching, and set = set stance (watch, support, oppose)
+//possible mock votes using set functionality?
+export const setMonitor = (LEGI_KEY, bill_ids, action) => {
+    return fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=setMonitor&action=${action}&list=${bill_ids}` ,{
+        body: JSON.stringify({
+
+        }),
+        header: {
+            'Content-type': 'application/json',
+            }
+      });
+}
