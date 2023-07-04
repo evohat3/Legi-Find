@@ -6,9 +6,9 @@ import Typography from '@mui/material/Typography'
 const Footer = () => {
 
   return (
-    <footer >
-      <Container maxWidth="lg">
-        <Typography variant="body2" align="center">
+    <footer backgroundcolor="primary">
+      <Container maxWidth="xl" sx={{backgroundColor: "skyblue"}}>
+        <Typography variant="h2" align="center">
           This is the footer content.
         </Typography>
       </Container>
