@@ -55,6 +55,10 @@ export const getSearchState = async (LEGI_KEY, state, query) => {
             'Content-type': 'application/json',
             }
       });
+      let data = await response.json();
+      setPosts((posts) =>[
+        
+      ])
 }
 
 //searches legiscan API by exact session ID
