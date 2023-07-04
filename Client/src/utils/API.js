@@ -15,7 +15,8 @@ export const getBill = (LEGI_KEY, bill_id) => {
       });
 }
 
-//need to modify year variable to filter years
+//Searches legiscan API by state
+//need to modify year variable to filter years. Will be "&year=YEAR" after query
 export const getSearchState = (LEGI_KEY, state, query) => {
     return fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getSearch&state=${state}&query=${query}` ,{
         body: JSON.stringify({
@@ -27,6 +28,7 @@ export const getSearchState = (LEGI_KEY, state, query) => {
       });
 }
 
+//searches legiscan API by exact session ID
 export const getSearchSession = (LEGI_KEY, session_id, query) => {
     return fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getSearch&id=${session_id}&query=${query}` ,{
         body: JSON.stringify({
