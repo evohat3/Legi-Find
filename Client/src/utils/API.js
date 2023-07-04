@@ -13,6 +13,17 @@ export const getSessionList = async (LEGI_KEY) => {
             'Content-type': 'application/json',
             }
       });
+      let data = await response.json();
+      setPosts((posts) =>[
+        data.sessions.sessionid, 
+        data.sessions.stateid,
+        data.sessions.year_start,
+        data.sessions.year_end,
+        data.sessions.session_tag,
+        data.sessions.session_title,
+        data.sessions.session_name,
+        data.session.dataset_hash
+      ])
 }
 
 //searches for list of legislators in a paticular session
@@ -26,6 +37,10 @@ export const getSessionPeople = async (session_id) => {
             'Content-type': 'application/json',
             }
       });
+      let data = await response.json();
+      setPosts((posts) =>[
+        data.sessionpeople.people
+      ])
 }
 
 //Searches legiscan API by state
@@ -53,9 +68,13 @@ export const getSearchSession = async (LEGI_KEY, session_id, query) => {
             'Content-type': 'application/json',
             }
       });
+      let data = await response.json();
+      setPosts((posts) =>[
+        data.searchresult
+      ])
 }
 
-//call get bill from legiscan APIm fill in line 10 when we know exactly what we want form each bill
+//call get bill from legiscan API 
 export const getBill = async (LEGI_KEY, bill_id) => {
     let response = await fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getBill${bill_id}`, {
         method: 'POST',
@@ -66,6 +85,10 @@ export const getBill = async (LEGI_KEY, bill_id) => {
             'Content-type': 'application/json',
             }
       });
+      let data = await response.json();
+      setPosts((posts) =>[
+        data.bill
+      ])
 }
 
 //search person by id
@@ -78,6 +101,10 @@ export const getPerson = async (LEGI_KEY, people_id ) => {
             'Content-type': 'application/json',
             }
       });
+      let data = await response.json();
+      setPosts((posts) =>[
+        data.person
+      ])
 }
 
 //gets bill number, id and change_hash for paticular session
@@ -90,6 +117,10 @@ export const getMasterListRaw = async (LEGI_KEY, session_id ) => {
             'Content-type': 'application/json',
             }
       });
+      let data = await response.json();
+      setPosts((posts) =>[
+        data.masterlist
+      ])
 }
 
 // returns a master list of summary bill data in the given session_id or current state session. 
@@ -103,4 +134,8 @@ export const getMasterList = async (LEGI_KEY, session_id ) => {
             'Content-type': 'application/json',
             }
       });
+      let data = await response.json();
+      setPosts((posts) =>[
+        data.masterlist
+      ])
 }
