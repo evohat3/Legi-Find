@@ -13,6 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from 'react-router-dom';
+import Auth from '../utils/auth'
 
 const pages = ['Home','Search', 'News', 'SignUp', 'Login'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -158,20 +159,25 @@ function ResponsiveAppBar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}
+                <MenuItem
+                key={setting}
+                onClick={() => {
+                  handleCloseUserMenu();
+                  if (setting === 'Logout') {
+                    Auth.logout(); // Call the logout function from auth.js
+                  }
+                }}
                 component={
-                  setting === 'Account' ||
-                  setting === 'Dashboard' ||
-                  setting === 'Logout' ? Link : 'button'
+                  setting === 'Account' || setting === 'Dashboard' || setting === 'Logout' ? Link : 'button'
                 }
                 to={
                   setting === 'Account' ? '/account' :
-                  setting === 'Dashboard' ? '/dashboard':
-                  setting === 'Logout' ? '/logout' : undefined
-
-                }>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
+                  setting === 'Dashboard' ? '/dashboard' :
+                  setting === 'Logout' ? '/' : undefined
+                }
+              >
+                <Typography textAlign="center">{setting}</Typography>
+              </MenuItem>
               ))}
             </Menu>
           </Box>

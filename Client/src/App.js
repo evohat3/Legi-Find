@@ -6,8 +6,8 @@ import Header from './components/Header'
 import Login from './pages/LoginPage'
 import Signup from './pages/SignupPage'
 import Search from './pages/SearchPage'
-import LogOut from './pages/LogOut'
 import Account from './pages/AccountPage'
+import LoggedIn from './pages/LoggedIn'
 import React from 'react';
 import {
   ApolloClient,
@@ -55,8 +55,8 @@ function App() {
       <Route path="/login" element={<Login /> } />
       <Route path="/signup" element={<Signup /> } />
       <Route path="/search" element={<Search />} />
-      <Route path="/logout" element={<LogOut />} />
       <Route path="/account" element={<Account />} />
+      <Route path="/loggedin" element={<LoggedIn />} />
 
       </Routes>
       <Footer />

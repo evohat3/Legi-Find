@@ -98,10 +98,7 @@ const Login = () => {
           
 
           {data ? (
-              <h1>
-                Success! You are logged in!
-                
-              </h1>
+              <></>
             ) : (
             
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
