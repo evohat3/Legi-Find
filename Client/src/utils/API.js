@@ -2,9 +2,22 @@
 require('dotenv').config()
 const LEGI_KEY  = process.env.LEGI_KEY
 
-//call get bill from legiscan APIm fill in line 10 when we know exactly what we want form each bill
-export const getBill = (LEGI_KEY, bill_id) => {
-    return fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getBill${bill_id}`, {
+//gets list of session that are avalible, need to modify state variable to filter state. Will be "&state=STATE" after session_id
+export const getSessionList = async (LEGI_KEY) => {
+    let response = await fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getSessionList` ,{
+        method: 'POST',
+        body: JSON.stringify({
+            
+        }),
+        header: {
+            'Content-type': 'application/json',
+            }
+      });
+}
+
+//searches for list of legislators in a paticular session
+export const getSessionPeople = async (session_id) => {
+    let response = await fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getSessionPeople=${session_id}` ,{
         method: 'POST',
         body: JSON.stringify({
 
@@ -17,8 +30,9 @@ export const getBill = (LEGI_KEY, bill_id) => {
 
 //Searches legiscan API by state
 //need to modify year variable to filter years. Will be "&year=YEAR" after query
-export const getSearchState = (LEGI_KEY, state, query) => {
-    return fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getSearch&state=${state}&query=${query}` ,{
+export const getSearchState = async (LEGI_KEY, state, query) => {
+    let response = await fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getSearch&state=${state}&query=${query}` ,{
+        method: 'POST',
         body: JSON.stringify({
 
         }),
@@ -29,8 +43,22 @@ export const getSearchState = (LEGI_KEY, state, query) => {
 }
 
 //searches legiscan API by exact session ID
-export const getSearchSession = (LEGI_KEY, session_id, query) => {
-    return fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getSearch&id=${session_id}&query=${query}` ,{
+export const getSearchSession = async (LEGI_KEY, session_id, query) => {
+    let response = await fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getSearch&id=${session_id}&query=${query}` ,{
+        method: 'POST',
+        body: JSON.stringify({
+
+        }),
+        header: {
+            'Content-type': 'application/json',
+            }
+      });
+}
+
+//call get bill from legiscan APIm fill in line 10 when we know exactly what we want form each bill
+export const getBill = async (LEGI_KEY, bill_id) => {
+    let response = await fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getBill${bill_id}`, {
+        method: 'POST',
         body: JSON.stringify({
 
         }),
@@ -41,11 +69,13 @@ export const getSearchSession = (LEGI_KEY, session_id, query) => {
 }
 
 
-//searches for list of legislators in a paticular session
-export const getSessionPeople = (session_id) => {
-    return fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getSessionPeople=${session_id}` ,{
-        body: JSON.stringify({
 
+
+//search person by id
+export const getPerson = async (LEGI_KEY, people_id ) => {
+    let response = await fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getPerson&id=${people_id}` ,{
+        method: 'POST',
+        body: JSON.stringify({
         }),
         header: {
             'Content-type': 'application/json',
@@ -53,11 +83,11 @@ export const getSessionPeople = (session_id) => {
       });
 }
 
-//gets list of session that are avalible, need to modify state variable to filter state. Will be "&state=STATE" after session_id
-export const getSessionList = (LEGI_KEY) => {
-    return fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getSessionList` ,{
+//gets bill number, id and change_hash for paticular session
+export const getMasterListRaw = async (LEGI_KEY, session_id ) => {
+    let response = await fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getMasterListRaw=${session_id}` ,{
+        method: 'POST',
         body: JSON.stringify({
-
         }),
         header: {
             'Content-type': 'application/json',
@@ -65,13 +95,12 @@ export const getSessionList = (LEGI_KEY) => {
       });
 }
 
-//sets a monitor on a paticular pull for updates on it
-//for action: set = montior, remove = stop watching, and set = set stance (watch, support, oppose)
-//possible mock votes using set functionality?
-export const setMonitor = (LEGI_KEY, bill_ids, action) => {
-    return fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=setMonitor&action=${action}&list=${bill_ids}` ,{
-        body: JSON.stringify({
+// returns a master list of summary bill data in the given session_id or current state session. 
 
+export const getMasterList = async (LEGI_KEY, session_id ) => {
+    let response = await fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getMasterList=${session_id}` ,{
+        method: 'POST',
+        body: JSON.stringify({
         }),
         header: {
             'Content-type': 'application/json',
