@@ -32,6 +32,7 @@ class AuthService {
       localStorage.setItem('id_token', idToken);
   
       window.location.assign('/loggedin');
+      console.log('you have logged in')
     }
   
     logout() {
@@ -39,6 +40,7 @@ class AuthService {
       localStorage.removeItem('id_token');
       // this will reload the page and reset the state of the application
       window.location.assign('/');
+      console.log('you have logged out')
     }
   }
   const Auth = new AuthService();
