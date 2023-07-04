@@ -158,7 +158,18 @@ function ResponsiveAppBar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <MenuItem key={setting} onClick={handleCloseUserMenu}
+                component={
+                  setting === 'Account' ||
+                  setting === 'Dashboard' ||
+                  setting === 'Logout' ? Link : 'button'
+                }
+                to={
+                  setting === 'Account' ? '/account' :
+                  setting === 'Dashboard' ? '/dashboard':
+                  setting === 'Logout' ? '/logout' : undefined
+
+                }>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
