@@ -58,7 +58,7 @@ export default function SignUp() {
         });
         
         if (data) {
-          console.log(userFormData);
+          console.log(data);
           Auth.addUser(data);
       
           // Retrieve the JWT from the response
