@@ -23,12 +23,12 @@ const Login = () => {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   const [validated, setValidated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
-  const [loginUser, { error, data }] = useMutation(LOGIN);
+  const [login, { error, data }] = useMutation(LOGIN);
 
   // update state based on form input changes
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    console.log(name, value);
+    // console.log(name, value);
     setUserFormData({ ...userFormData, [name]: value });
   };
 
@@ -46,12 +46,14 @@ const Login = () => {
     setValidated(true);
     try {
       console.log('userFormData:', userFormData);
-      const { data } = await loginUser({
+      const { data } = await login({
         variables: { ...userFormData },
       });
 
-      Auth.login(data.token);
-      console.log(data);
+      console.log('this is the user login data below')
+      console.log(data)
+      
+      Auth.login(data.login.token);
     } catch (err) {
       console.error(err);
       setShowAlert(true);
@@ -79,6 +81,8 @@ const Login = () => {
 
   return (
     <ThemeProvider theme={defaultTheme}>
+
+
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -89,67 +93,62 @@ const Login = () => {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 4, bgcolor: 'primary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Login
-          </Typography>
-          
-
           {data ? (
               <></>
             ) : (
-            
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-<Alert
-  dismissible="true"
-  onClose={() => setShowAlert(false)}
-  show={showAlert ? 'true' : undefined}
-  variant='danger'
->
-  Something went wrong with your login credentials!
-</Alert>
+          <><Avatar sx={{ m: 4, bgcolor: 'primary.main' }}>
+                <LockOutlinedIcon />
+              </Avatar><Typography component="h1" variant="h5">
+                  Login
+                </Typography><Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+                  <Alert
+                    dismissible="true"
+                    onClose={() => setShowAlert(false)}
+                    show={showAlert ? 'true' : undefined}
+                    variant='danger'
+                  >
+                    Something went wrong with your login credentials!
+                  </Alert>
 
-          <Grid container spacing={2}>
-                  <Grid item xs={12}>
-                    <TextField
-                      required
-                      fullWidth
-                      value={userFormData.email}
-                      id="email"
-                      label="Email Address"
-                      name="email"
-                      autoComplete="email"
-                      onChange={handleInputChange} />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      required
-                      fullWidth
-                      name="password"
-                      label="Password"
-                      type="password"
-                      id="password"
-                      autoComplete="password"
-                      value={userFormData.password}
-                      onChange={handleInputChange} />
-                  </Grid>
-                  <Grid item xs={12}>
+                  <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                      <TextField
+                        required
+                        fullWidth
+                        value={userFormData.email}
+                        id="email"
+                        label="Email Address"
+                        name="email"
+                        autoComplete="email"
+                        onChange={handleInputChange} />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <TextField
+                        required
+                        fullWidth
+                        name="password"
+                        label="Password"
+                        type="password"
+                        id="password"
+                        autoComplete="password"
+                        value={userFormData.password}
+                        onChange={handleInputChange} />
+                    </Grid>
+                    <Grid item xs={12}>
 
-                  </Grid>
-                </Grid><Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  sx={{ mt: 3, mb: 2 }}
-                >
+                    </Grid>
+                  </Grid><Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    sx={{ mt: 3, mb: 2 }}
+                  >
                     Login
                   </Button><Grid container justifyContent="flex-end">
                     <Grid item>
                     </Grid>
                   </Grid>
-          </Box>
+                </Box></>
           )}
 
         {error && (
