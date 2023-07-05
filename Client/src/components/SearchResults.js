@@ -1,37 +1,72 @@
 import * as React from 'react';
-import Box from '@mui/material/Box'
-// import Container from '@mui/material/Container'
-// import Typography from '@mui/material/Typography'
-import Stack from '@mui/material/Stack'
-import Divider from '@mui/material/Divider'
-import Grid from '@mui/material/Grid'
-import ListItemText from '@mui/material/ListItemText';
+import Link from '@mui/material/Link';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import PropTypes from 'prop-types';
+import Typography from '@mui/material/Typography';
 
+function Title(props) {
+  return (
+    <Typography component="h2" variant="h6" color="primary" gutterBottom>
+      {props.children}
+    </Typography>
+  );
+}
 
+Title.propTypes = {
+  children: PropTypes.node,
+};
 
-  const SearchResults = () => {
-  
-    return (
+// Generate Order Data
+function createData(id, date, name, shipTo, paymentMethod, amount) {
+  return { id, date, name, shipTo, paymentMethod, amount };
+}
 
-    <Box >
-        <Grid 
-            container
-            spacing={0}
-            direction="column"
-            alignItems="center"
-            justifyContent="center">
+const rows = [
+  createData(
+    0,
+    '16 Mar, 2019',
+    'Elvis Presley',
+    'Tupelo, MS',
+    'VISA ⠀•••• 3719',
+  )
+];
 
-                <Stack 
-                     divider={<Divider orientation='horizontal' flexItem/>}
-                 >
-                    <ListItemText><Box>1</Box></ListItemText>
-                    <ListItemText><Box>2</Box></ListItemText>
-                    <ListItemText><Box>3</Box></ListItemText>
-                </Stack>
-        </Grid>
-    </Box>
-    );
-  };
+function preventDefault(event) {
+  event.preventDefault();
+}
 
+export default function SearchResults() {
+  return (
+    <React.Fragment>
+      <Title>Search Results</Title>
+      <Table size="small">
+        <TableHead>
+          <TableRow>
+            <TableCell>Bill Number</TableCell>
+            <TableCell>Title</TableCell>
+            <TableCell>Bill Text</TableCell>
+            <TableCell>Bill Information</TableCell>
 
-export default SearchResults;
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <TableRow key={row.id}>
+              <TableCell>{row.date}</TableCell>
+              <TableCell>{row.name}</TableCell>
+              <TableCell>{row.shipTo}</TableCell>
+              <TableCell>{row.paymentMethod}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+      <Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
+        See more orders
+      </Link>
+    </React.Fragment>
+  );
+}

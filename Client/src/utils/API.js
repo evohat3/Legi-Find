@@ -1,6 +1,7 @@
 //https://api.legiscan.com/?key=46f60bb5da729de39fe63400d12082db&op=getBill
-require('dotenv').config()
+// require('dotenv').config()
 const LEGI_KEY  = process.env.LEGI_KEY
+import React, { useState, useEffect } from 'react';
 
 //gets list of session that are avalible, need to modify state variable to filter state. Will be "&state=STATE" after session_id
 export const getSessionList = async (LEGI_KEY) => {
@@ -14,7 +15,7 @@ export const getSessionList = async (LEGI_KEY) => {
             }
       });
       let data = await response.json();
-      setPosts((posts) =>[
+      setPosts(( ) =>[
         data.sessions.sessionid, 
         data.sessions.stateid,
         data.sessions.year_start,
