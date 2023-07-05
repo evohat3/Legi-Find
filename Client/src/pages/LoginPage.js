@@ -23,12 +23,12 @@ const Login = () => {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   const [validated, setValidated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
-  const [loginUser, { error, data }] = useMutation(LOGIN);
+  const [login, { error, data }] = useMutation(LOGIN);
 
   // update state based on form input changes
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    console.log(name, value);
+    // console.log(name, value);
     setUserFormData({ ...userFormData, [name]: value });
   };
 
@@ -46,12 +46,14 @@ const Login = () => {
     setValidated(true);
     try {
       console.log('userFormData:', userFormData);
-      const { data } = await loginUser({
+      const { data } = await login({
         variables: { ...userFormData },
       });
 
-      Auth.login(data.token);
-      console.log(data);
+      console.log('this is the user login data below')
+      console.log(data)
+      
+      Auth.login(data.login.token);
     } catch (err) {
       console.error(err);
       setShowAlert(true);
