@@ -14,11 +14,13 @@ const typeDefs = gql`
     _id: ID
     email: String
     password: String
+    first: String
+    last: String
   }
   type Mutation {
-    addUser(email: String!, password: String!): Auth
+    addUser(email: String!, password: String!, first: String!, last: String!): Auth
     updateUser(email: String, password: String): User
     login(email: String!, password: String!): Auth
   }
-`;
+`
 module.exports = typeDefs
