@@ -16,9 +16,6 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const login = Auth.login
-
-
 // TODO dont need this for now but we could use this to change themes
 const defaultTheme = createTheme();
 
@@ -27,9 +24,9 @@ export default function SignUp() {
   const isLoggedIn = Auth.loggedIn();
 
   const [userFormData, setUserFormData] = useState({first:'', last:'', email: '', password: ''})
-  const [, setValidated] = useState(false);
+  const [validated, setValidated] = useState(false);
   const [,setShowAlert] = useState(false);
-  const [addUser] = useMutation(SIGNUP);
+  const [addUser, {error}] = useMutation(SIGNUP);
   
 
 
@@ -59,21 +56,22 @@ export default function SignUp() {
         
         if (data) {
           console.log(data);
-          Auth.addUser(data);
-      
-          // Retrieve the JWT from the response
-          const token = data.token;
-      
-          // Log in the user using the JWT
-          await login(token);
-      
-          window.location.assign('/');
         }
-      } catch (error) {
-        console.error(error);
+      } catch (err) {
+        console.error(err);
         setShowAlert(true);
       }
-  }
+      setUserFormData({
+        first: '',
+        last: '',
+        email: '',
+        password: '',
+      });
+    
+      if (error) {
+        setShowAlert(true);
+      }
+  };
 
 if (!isLoggedIn) {
   return (
@@ -94,7 +92,7 @@ if (!isLoggedIn) {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box component="form" noValidate validated={validated.toString()} onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
