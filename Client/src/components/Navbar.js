@@ -13,18 +13,23 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from 'react-router-dom';
-
-const pages = ['Home','Search', 'News', 'SignUp', 'Login'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+import Auth from '../utils/auth';
 
 
 function ResponsiveAppBar() {
+
+  const pages = [ 'Dashboard','Home','Search', 'News', 'SignUp', 'Login',];
+const settings = ['Profile', 'Account', 'Home' ,'Search', 'News', 'SignUp', 'Login', 'Dashboard', 'Logout',];
+
+  const isLoggedIn = Auth.loggedIn();
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
+
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -38,10 +43,10 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar position="static" sx={{ backgroundcolor: 'primary', border: 1, bordercolor: 'text.primary' }}>
+    <AppBar position="static" sx={{ backgroundColor: 'primary', border: 1, borderColor: 'text.primary' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1}} />
+          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
@@ -89,16 +94,35 @@ function ResponsiveAppBar() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem 
-                  key={page} onClick={handleCloseNavMenu} 
-                  component={page === 'Login' || page === 'SignUp' || page === 'Home'? Link : 'button'}
-                  to={page === 'Login' ? '/login' : page === 'SignUp' ? '/signup' : page === 'Home' ? '/' : undefined}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
+              {pages.map((page) => {
+        if ((page === 'SignUp' || page === 'Login' || page === 'Home') && isLoggedIn) {
+          // Skip rendering "SignUp" and "Login" if user is logged in
+          return null;
+        }
+        if (page === 'Dashboard' && !isLoggedIn) {
+          // Skip rendering "Dashboard" if user is not logged in
+          return null;
+        }
+        return (
+                    <MenuItem
+                      key={page}
+                      onClick={handleCloseNavMenu}
+                      component={Link}
+                      to={
+                        page === 'Home' ? '/' : 
+                        page === 'Search' ? '/search' : 
+                        page === 'Login' ? '/login' : 
+                        page === 'SignUp' ? '/signup' :
+                        page === 'Dashboard' ? '/dashboard' :
+                         undefined}
+                    >
+                      <Typography textAlign="center">{page}</Typography>
+                    </MenuItem>
+                      );
+      })}
             </Menu>
           </Box>
+
           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h5"
@@ -118,27 +142,52 @@ function ResponsiveAppBar() {
           >
             Legi-Find
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                component={page === 'Login' || page === 'SignUp' || page === 'Home'? Link : 'button'}
-                to={page === 'Login' ? '/login' : page === 'SignUp' ? '/signup' : page === 'Home' ? '/' : undefined}
-                sx={{ my: 2, color: 'white', display: 'block', '&:hover':{backgroundcolor: 'white', color:'black'} }}
-                
-              >
-                {page}
-              </Button>
-            ))}
-          </Box>
-                  
 
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+      {pages.map((page) => {
+        if ((page === 'SignUp' || page === 'Login' || page === 'Home') && isLoggedIn) {
+          // Skip rendering "SignUp" and "Login" if user is logged in
+          return null;
+        }
+        if (page === 'Dashboard' && !isLoggedIn) {
+          // Skip rendering "Dashboard" if user is not logged in
+          return null;
+        }
+        return (
+          <Button
+            key={page}
+            onClick={handleCloseNavMenu}
+            component={Link}
+            to={
+              page === 'Home' ? '/' :
+              page === 'Search' ? '/search' :
+              page === 'News' ? '/news' :
+              page === 'Login' ? '/login' :
+              page === 'SignUp' ? '/signup' :
+              page === 'Dashboard' ? '/dashboard' :
+              undefined
+            }
+            sx={{
+              my: 2,
+              color: 'white',
+              display: 'block',
+              '&:hover': { backgroundColor: 'white', color: 'black' },
+            }}
+          >
+            {page}
+          </Button>
+        );
+      })}
+    </Box>
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="https://i.imgur.com/IAj05FO.png" sx={{border: 3, color: 'primary.'}} />
+                <Avatar
+                  alt="Remy Sharp"
+                  src="https://i.imgur.com/IAj05FO.png"
+                  sx={{ border: 3, color: 'primary.' }}
+                />
               </IconButton>
             </Tooltip>
             <Menu
@@ -157,11 +206,52 @@ function ResponsiveAppBar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+              {settings.map((setting) => {
+        if ((setting === 'Profile' || setting === 'Login' || setting === 'Home' || setting === 'SignUp') && isLoggedIn) {
+          // Skip rendering "SignUp" and "Login" if user is logged in
+          return null;
+        }
+        if ((setting === 'Dashboard' || setting === 'Profile' || setting === 'Account' || setting === 'Logout') && !isLoggedIn) {
+          // Skip rendering "Dashboard" if user is not logged in
+          return  (setting === 'Home'|| setting === 'Search' || setting === 'News' || setting === 'SignUp' || setting === 'Login')
+        }
+        return (
+                <MenuItem
+                  key={setting}
+                  onClick={() => {
+                    handleCloseUserMenu();
+                    if (setting === 'Logout') {
+                      Auth.logout(); // Call the logout function from auth.js
+                    }
+                  }}
+                  component={
+                    setting === 'Account' || 
+                    setting === 'Dashboard' || 
+                    setting === 'Logout' || 
+                    setting === 'SignUp' || 
+                    setting === 'Home'||
+                    setting === 'Search' ||
+                    setting === 'News' ||
+                    setting === 'SignUp' ||
+                    setting === 'Login'
+                    
+                    ? Link : 'button'
+                  }
+                  to={
+                    setting === 'Account' ? '/account' :
+                    setting === 'Dashboard' ? '/dashboard' :
+                    setting === 'Logout' ? '/' : 
+                    setting === 'Login' ? '/login' :
+                    setting === 'SignUp' ? '/signup' :
+                    setting === 'News' ? '/news' :
+                    setting === 'Search' ? '/search' :
+                    setting === 'Home' ? '/' : undefined
+                  }
+                >
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
-              ))}
+                );
+              })}
             </Menu>
           </Box>
         </Toolbar>
@@ -169,4 +259,5 @@ function ResponsiveAppBar() {
     </AppBar>
   );
 }
+
 export default ResponsiveAppBar;

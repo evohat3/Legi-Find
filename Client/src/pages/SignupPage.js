@@ -1,4 +1,7 @@
-import * as React from 'react';
+import  React, { useState } from 'react';
+import { SIGNUP } from '../utils/mutations'
+import { useMutation } from '@apollo/client';
+import Auth from '../utils/auth'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,32 +16,64 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-function Copyright(props: any) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
-// TODO remove, this demo shouldn't need to reset the theme.
+// TODO dont need this for now but we could use this to change themes
 const defaultTheme = createTheme();
 
 export default function SignUp() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+
+  const isLoggedIn = Auth.loggedIn();
+
+  const [userFormData, setUserFormData] = useState({first:'', last:'', email: '', password: ''})
+  const [validated, setValidated] = useState(false);
+  const [,setShowAlert] = useState(false);
+  const [addUser, {error}] = useMutation(SIGNUP);
+  
+
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    console.log(name, value);
+    setUserFormData({ ...userFormData, [name]: value });
   };
 
+
+    // submit form
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+  
+      const form = event.currentTarget;
+      if (form.checkValidity() === false) {
+        event.preventDefault();
+        event.stopPropagation();
+        return;
+      }
+      setValidated(true);
+      try {
+        console.log(userFormData);
+        const { data } = await addUser({
+          variables: { ...userFormData },
+        });
+        
+        if (data) {
+          console.log(data);
+        }
+      } catch (err) {
+        console.error(err);
+        setShowAlert(true);
+      }
+      setUserFormData({
+        first: '',
+        last: '',
+        email: '',
+        password: '',
+      });
+    
+      if (error) {
+        setShowAlert(true);
+      }
+  };
+
+if (!isLoggedIn) {
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
@@ -57,27 +92,27 @@ export default function SignUp() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box component="form" noValidate validated={validated.toString()} onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  autoComplete="given-name"
-                  name="firstName"
+                  name="first"
                   required
                   fullWidth
-                  id="firstName"
+                  id="first"
                   label="First Name"
-                  autoFocus
-                />
+                  
+                  onChange={handleInputChange} />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
                   required
                   fullWidth
-                  id="lastName"
+                  id="last"
                   label="Last Name"
-                  name="lastName"
+                  name="last"
                   autoComplete="family-name"
+                  onChange={handleInputChange}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -88,6 +123,7 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  onChange={handleInputChange}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -99,6 +135,7 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  onChange={handleInputChange}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -113,6 +150,7 @@ export default function SignUp() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              onSubmit={handleSubmit}
             >
               Sign Up
             </Button>
@@ -125,8 +163,9 @@ export default function SignUp() {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 5 }} />
       </Container>
     </ThemeProvider>
   );
+
+}
 }

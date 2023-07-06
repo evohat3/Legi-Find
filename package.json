@@ -4,20 +4,20 @@
   "description": "",
   "main": "server/server.js",
   "scripts": {
-    "heroku-postbuild": "cd $BUILD_DIR/server && npm install && cd $BUILD_DIR/client && npm install",
-    "start": "node server/server.js --ignore client",
-    "develop": "concurrently \"cd server && npm run watch \" \"cd client && npm start\"",
-    "install": "cd server && npm i && cd ../client && npm i",
-    "seed": "cd server && npm run seed",
-    "build": "cd client && npm run build"
+    "heroku-postbuild": "cd Server && npm install && cd ../Client && npm i && npm run build",
+    "start": "node Server/server.js --ignore client",
+    "develop": "concurrently \"cd Server && npm run watch \" \"cd Client && npm start\"",
+    "install": "npm install concurrently && cd Server && npm i && cd ../Client && npm i && npm run build",
+    "seed": "cd Server && npm run seed",
+    "build": "cd Client && npm run build"
   },
   "engines": {
-    "node": "14.x"
+    "node": "18.x",
+    "npm": "9.x"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "concurrently": "^8.2.0",
     "eslint": "^8.43.0",
     "eslint-config-standard": "^17.1.0",
@@ -28,7 +28,7 @@
     "nodemon": "^1.14.9"
   },
   "dependencies": {
-    "@material-ui/core": "^4.12.4",
+    "@mui/styles": "^5.13.2",
     "dotenv": "^16.3.1",
     "force": "0.0.3"
   }

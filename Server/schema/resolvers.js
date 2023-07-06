@@ -1,8 +1,13 @@
 const { AuthenticationError } = require('apollo-server-express')
 const { User } = require('../models')
 const { signToken } = require('../utils/auth')
+require('dotenv').config()
 
-const secret = process.SECRET_KEY
+const secret = process.env.SECRET_KEY
+const expiration = process.env.EXPIRES_IN
+
+console.log(secret)
+console.log(expiration)
 
 const resolvers = {
   Query: {
@@ -12,11 +17,11 @@ const resolvers = {
     }
   },
   Mutation: {
-    addUser: async (parent, { email, password }) => {
-      const user = await User.create({ email, password })
-      const token = signToken(user, secret)
+    addUser: async (parent, { email, password, first, last }) => {
+      const user = await User.create({ email, password, first, last })
+      const token = signToken(user, secret, expiration)
 
-      return { token, user }
+      return { token, user: { first, last, email, password } }
     },
     updateUser: async (parent, args, context) => {
       if (context.user) {
@@ -28,7 +33,7 @@ const resolvers = {
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email })
 
-      if (!User) {
+      if (!user) {
         throw new AuthenticationError('Incorrect credentials')
       }
 

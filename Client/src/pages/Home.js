@@ -1,32 +1,34 @@
 import React from 'react'
-import { Typography } from '@material-ui/core'
+import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import Box from '@mui/material/Box'
+import Auth from '../utils/auth'
+
+
 
 
 
 export default function Home() {
-    return (
-            <Box sx={{ height: 600, width: '100%', display: 'flex', justifyContent: 'center',alignItems: 'center',}} >
-                <Container sx={{ bgcolor: 'primary.main'}}>
-                    <Typography   
-                        variant='h3'
-                        align='center'>
-                        Welcome To Legi-Find!
-                    </Typography>
-                </Container>
 
+    const isLoggedIn = Auth.loggedIn();
 
+    if (!isLoggedIn) {
+        return (
+          <Box sx={{ height: 600, width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <Container sx={{ bgcolor: 'primary.main' }}>
+              <Typography variant='h3' align='center'>
+                Welcome To Legi-Find!
+              </Typography>
+            </Container>
+    
+            <Container backgroundcolor="black" color="white" align="center">
+              Hello
+            </Container>
+          </Box>
+        );
+      } else {
 
-                <Container 
-                backgroundcolor="black"
-                color="white"
-                align="center"
-                >
-                    Hello
-                </Container>
-
-
-            </Box>
-    )
-}
+        window.location.href = '/dashboard'; // Redirect to '/dashboard' if user is logged in
+        return null; // Optional: You can remove this line if you prefer to keep it for readability
+      }
+    }
