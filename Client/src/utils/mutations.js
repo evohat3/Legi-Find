@@ -19,9 +19,11 @@ mutation AddUserMutation($first: String!, $last: String!, $email: String!, $pass
   addUser(first: $first, last: $last, email: $email, password: $password) {
     token
     user {
+      _id
       first
       last
-      _id
+      email
+      password
     }
   }
 }

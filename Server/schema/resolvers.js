@@ -21,7 +21,7 @@ const resolvers = {
       const user = await User.create({ email, password, first, last })
       const token = signToken(user, secret, expiration)
 
-      return { token, user }
+      return { token, user: { first, last, email, password } }
     },
     updateUser: async (parent, args, context) => {
       if (context.user) {
