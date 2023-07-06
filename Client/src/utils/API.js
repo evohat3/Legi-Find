@@ -3,11 +3,11 @@ import React from 'react';
 const LEGI_KEY  = process.env.REACT_APP_LEGI_KEY
 
 //gets list of session that are avalible, need to modify state variable to filter state. Will be "&state=STATE" after session_id
-export const getSessionList = async (data) => {
+export const getSessionList = (LEGI_KEY) => {
 
     // const session = data.sessions
 
-    await fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getSessionList` ,{
+    fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getSessionList` ,{
     //     method: 'POST',
     //     body: JSON.stringify({
     //         sessionid: session.sessionid, 
@@ -64,7 +64,7 @@ export const getSessionPeople = async (session_id) => {
 //Searches legiscan API by state
 //need to modify year variable to filter years. Will be "&year=YEAR" after query
 export const getSearchState = async (LEGI_KEY, state, query) => {
-     await fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getSearch&state=${state}&query=${query}` ,{
+     await fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getSearch&state=${state}&query=${query}` 
     //     method: 'POST',
     //     body: JSON.stringify({
 
@@ -79,7 +79,7 @@ export const getSearchState = async (LEGI_KEY, state, query) => {
     //   ])
     //   .catch((err) => {
     //     console.log(err.message);
-      })
+      )
 }
 
 //searches legiscan API by exact session ID

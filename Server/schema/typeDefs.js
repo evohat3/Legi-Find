@@ -2,6 +2,13 @@ const { gql } = require('apollo-server-express')
 
 //TODO: add bill and array and saved bills
 const typeDefs = gql`
+  type stateSearch {
+    billID: Number
+    changeHash: String
+    billSummary: String
+    billText: String
+    billTitle: String
+  }
   type Query {
     hello: String
     findUser(email: String): User

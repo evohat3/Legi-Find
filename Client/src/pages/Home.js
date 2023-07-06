@@ -5,9 +5,6 @@ import Box from '@mui/material/Box'
 import Auth from '../utils/auth'
 
 
-
-
-
 export default function Home() {
 
     const isLoggedIn = Auth.loggedIn();

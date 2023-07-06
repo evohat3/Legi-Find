@@ -11,6 +11,9 @@ console.log(expiration)
 
 const resolvers = {
   Query: {
+    searchState: () =>{
+      
+    },
     hello: () => 'Hello, World!',
     findUser: async (parent, { email }) => {
       return User.findOne({ email })
