@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import Auth from '../utils/auth';
 import { useLocation } from 'react-router-dom';
 
-export default function Dashboard() {
+export default function Dashboard(props) {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const token = queryParams.get('token');
@@ -34,8 +34,8 @@ export default function Dashboard() {
         }}
       >
         <Container sx={{ bgcolor: 'green' }}>
-          <Typography variant="h3" align="center">
-            Welcome ({first}) ({last})! You are logged in! with your email: ({email})
+          <Typography first={first} variant="h3" align="center">
+            Welcome {props.first} ({last})! You are logged in! with your email: ({email})
           </Typography>
           <Typography variant="h5" align="center"></Typography>
         </Container>
