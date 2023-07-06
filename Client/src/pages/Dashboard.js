@@ -3,13 +3,20 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Auth from '../utils/auth';
+import { useLocation } from 'react-router-dom';
 
-export default function Dashboard() {
-  const token = Auth.getToken(); // Retrieve the token from Auth module
+export default function Dashboard(props) {
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const token = queryParams.get('token');
   const decodedToken = Auth.getProfile(token); // Pass the token to getProfile
-
+  if (token) {
+    Auth.login(token);
+  }
   // Extract email from decoded token
   const email = decodedToken ? decodedToken.email : '';
+  const first = decodedToken ? decodedToken.first : '';
+  const last = decodedToken ? decodedToken.last : '';
 
   const isLoggedIn = Auth.loggedIn();
   if (!isLoggedIn) {
@@ -27,8 +34,8 @@ export default function Dashboard() {
         }}
       >
         <Container sx={{ bgcolor: 'green' }}>
-          <Typography variant="h3" align="center">
-            Welcome {email}! You are logged in!
+          <Typography first={first} variant="h3" align="center">
+            Welcome {props.first} ({last})! You are logged in! with your email: ({email})
           </Typography>
           <Typography variant="h5" align="center"></Typography>
         </Container>
