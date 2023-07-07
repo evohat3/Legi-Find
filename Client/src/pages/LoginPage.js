@@ -45,13 +45,13 @@ const Login = () => {
     }
     setValidated(true);
     try {
-      console.log('userFormData:', userFormData);
+      // console.log('userFormData:', userFormData);
       const { data } = await login({
         variables: { ...userFormData },
       });
 
-      console.log('this is the user login data below')
-      console.log(data)
+      // console.log('this is the user login data below')
+      // console.log(data)
       
       Auth.login(data.login.token);
     } catch (err) {
