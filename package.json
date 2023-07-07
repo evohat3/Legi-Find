@@ -4,10 +4,10 @@
   "description": "",
   "main": "server/server.js",
   "scripts": {
-    "heroku-postbuild": "cd Server && npm install && cd ../Client && npm i && npm run build",
+    "heroku-postbuild": "cd Server && npm install && cd ../Client && npm install && npm run build",
     "start": "node Server/server.js --ignore client",
     "develop": "concurrently \"cd Server && npm run watch \" \"cd Client && npm start\"",
-    "install": "npm install concurrently && cd Server && npm i && cd ../Client && npm i && npm build",
+    "install": "cd Server && npm install && cd ../Client && npm install && npm run build",
     "seed": "cd Server && npm run seed",
     "build": "cd Client && npm run build"
   },

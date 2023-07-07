@@ -1,5 +1,5 @@
 import  React, { useState } from 'react';
-import { SIGNUP } from '../utils/mutations'
+import { SIGNUP, LOGIN } from '../utils/mutations'
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth'
 import Avatar from '@mui/material/Avatar';
@@ -27,6 +27,7 @@ export default function SignUp() {
   const [validated, setValidated] = useState(false);
   const [,setShowAlert] = useState(false);
   const [addUser, {error}] = useMutation(SIGNUP);
+  const [loginUser] = useMutation(LOGIN)
   
 
 
@@ -55,7 +56,7 @@ export default function SignUp() {
         });
         
         if (data) {
-          console.log(data);
+      Auth.login(data.addUser.token)
         }
       } catch (err) {
         console.error(err);
