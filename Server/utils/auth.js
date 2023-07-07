@@ -4,7 +4,6 @@ require('dotenv').config()
 const secret = process.env.SECRET_KEY
 const expiration = process.env.EXPIRES_IN
 
-// console.log(secret)
 // console.log(expiration)
 
 module.exports = {
@@ -31,8 +30,14 @@ module.exports = {
 
     return req
   },
-  signToken: function ({ email, password }) {
-    const payload = { email, password }
+  signToken: function (user) {
+    
+    console.log("the secret is below")
+    console.log(secret + "the secret is here")  
+    const payload = { 
+      email: user.email, 
+      first: user.first, 
+      last:user.last }
 
     return jwt.sign({ data: payload }, secret, { expiresIn: expiration })
   }

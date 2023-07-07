@@ -3,11 +3,6 @@ const { User } = require('../models')
 const { signToken } = require('../utils/auth')
 require('dotenv').config()
 
-const secret = process.env.SECRET_KEY
-const expiration = process.env.EXPIRES_IN
-
-// console.log(secret)
-// console.log(expiration)
 
 const resolvers = {
   Query: {
@@ -22,7 +17,7 @@ const resolvers = {
   Mutation: {
     addUser: async (parent, { email, password, first, last }) => {
       const user = await User.create({ email, password, first, last })
-      const token = signToken(user, secret, expiration)
+      const token = signToken(user)
 
       return { token, user: { first, last, email, password } }
     },
