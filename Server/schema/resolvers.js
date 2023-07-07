@@ -6,8 +6,8 @@ require('dotenv').config()
 const secret = process.env.SECRET_KEY
 const expiration = process.env.EXPIRES_IN
 
-console.log(secret)
-console.log(expiration)
+// console.log(secret)
+// console.log(expiration)
 
 const resolvers = {
   Query: {

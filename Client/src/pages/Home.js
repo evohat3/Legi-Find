@@ -3,6 +3,7 @@ import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import Box from '@mui/material/Box'
 import Auth from '../utils/auth'
+import Dashboard from './Dashboard'
 
 
 
@@ -11,6 +12,8 @@ import Auth from '../utils/auth'
 export default function Home() {
 
     const isLoggedIn = Auth.loggedIn();
+
+
 
     if (!isLoggedIn) {
         return (
@@ -27,8 +30,6 @@ export default function Home() {
           </Box>
         );
       } else {
-
-        window.location.href = '/dashboard'; // Redirect to '/dashboard' if user is logged in
-        return null; // Optional: You can remove this line if you prefer to keep it for readability
+          return ( <Dashboard /> )
       }
     }
