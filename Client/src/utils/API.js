@@ -3,11 +3,11 @@ import React from 'react';
 const LEGI_KEY  = process.env.REACT_APP_LEGI_KEY
 
 //gets list of session that are avalible, need to modify state variable to filter state. Will be "&state=STATE" after session_id
-export const getSessionList = async (data) => {
+export const getSessionList = (LEGI_KEY) => {
 
     // const session = data.sessions
 
-    await fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getSessionList` ,{
+    fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getSessionList` 
     //     method: 'POST',
     //     body: JSON.stringify({
     //         sessionid: session.sessionid, 
@@ -37,13 +37,13 @@ export const getSessionList = async (data) => {
     //   ])
     //   .catch((err) => {
     //     console.log(err.message);
-      })
+      )
       
 }
 
 //searches for list of legislators in a paticular session
 export const getSessionPeople = async (session_id) => {
-    await fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getSessionPeople=${session_id}` ,{
+    await fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getSessionPeople=${session_id}` 
     //     method: 'POST',
     //     body: JSON.stringify({
 
@@ -58,13 +58,13 @@ export const getSessionPeople = async (session_id) => {
     //   ])
     //   .catch((err) => {
     //     console.log(err.message);
-      })
+      )
 }
 
 //Searches legiscan API by state
 //need to modify year variable to filter years. Will be "&year=YEAR" after query
 export const getSearchState = async (LEGI_KEY, state, query) => {
-     await fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getSearch&state=${state}&query=${query}` ,{
+     await fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getSearch&state=${state}&query=${query}` 
     //     method: 'POST',
     //     body: JSON.stringify({
 
@@ -79,12 +79,12 @@ export const getSearchState = async (LEGI_KEY, state, query) => {
     //   ])
     //   .catch((err) => {
     //     console.log(err.message);
-      })
+      )
 }
 
 //searches legiscan API by exact session ID
 export const getSearchSession = async (LEGI_KEY, session_id, query) => {
-    await fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getSearch&id=${session_id}&query=${query}` ,{
+    await fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getSearch&id=${session_id}&query=${query}` 
     //     method: 'POST',
     //     body: JSON.stringify({
 
@@ -99,12 +99,12 @@ export const getSearchSession = async (LEGI_KEY, session_id, query) => {
     //   ])
     //   .catch((err) => {
     //     console.log(err.message);
-      })
+      )
 }
 
 //call get bill from legiscan API 
 export const getBill = async (LEGI_KEY, bill_id) => {
-    await fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getBill${bill_id}`, {
+    await fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getBill${bill_id}`
     //     method: 'POST',
     //     body: JSON.stringify({
 
@@ -119,12 +119,12 @@ export const getBill = async (LEGI_KEY, bill_id) => {
     //   ])
     //   .catch((err) => {
     //     console.log(err.message);
-      })
+      )
 }
 
 //search person by id
 export const getPerson = async (LEGI_KEY, people_id ) => {
-    await fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getPerson&id=${people_id}` ,{
+    await fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getPerson&id=${people_id}` 
     //     method: 'POST',
     //     body: JSON.stringify({
     //     }),
@@ -138,12 +138,12 @@ export const getPerson = async (LEGI_KEY, people_id ) => {
     //   ])
     //   .catch((err) => {
     //     console.log(err.message);
-      })
+      )
 }
 
 //gets bill number, id and change_hash for paticular session
 export const getMasterListRaw = async (LEGI_KEY, session_id ) => {
-    await fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getMasterListRaw=${session_id}` ,{
+    await fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getMasterListRaw=${session_id}` 
     //     method: 'POST',
     //     body: JSON.stringify({
     //     }),
@@ -157,13 +157,13 @@ export const getMasterListRaw = async (LEGI_KEY, session_id ) => {
     //   ])
     //   .catch((err) => {
     //     console.log(err.message);
-      })
+      )
 }
 
 // returns a master list of summary bill data in the given session_id or current state session. 
 
 export const getMasterList = async (LEGI_KEY, session_id ) => {
-     await fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getMasterList=${session_id}` ,{
+     await fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getMasterList=${session_id}` 
     //     method: 'POST',
     //     body: JSON.stringify({
     //     }),
@@ -177,6 +177,6 @@ export const getMasterList = async (LEGI_KEY, session_id ) => {
     //   ])
     //   .catch((err) => {
     //     console.log(err.message);
-      })
+      )
 }
 
