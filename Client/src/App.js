@@ -10,7 +10,8 @@ import Account from './pages/AccountPage'
 import Dashboard from './pages/Dashboard'
 import NewThing from 
 './pages/NewThing'
-import React from 'react';
+import React, { useState }from 'react';
+import UserContext from './utils/UserContext'
 import {
   ApolloClient,
   InMemoryCache,
@@ -18,6 +19,7 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import Auth from './utils/auth'
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -45,10 +47,20 @@ const client = new ApolloClient({
 
 
 function App() {
+
+  const [userData] = useState(null);
+
+
+  const isLoggedIn = Auth.loggedIn();
+
+  console.log(isLoggedIn)
+
+
   return (
     <ApolloProvider client={client}>
+      <UserContext.Provider value={userData}>
     <div>
-      
+       
     <Router>
       <ResponsiveAppBar />
         <Header />
@@ -64,7 +76,9 @@ function App() {
       </Routes>
       <Footer />
     </Router>
+    
     </div>
+    /</UserContext.Provider>
     </ApolloProvider>
   );
 }

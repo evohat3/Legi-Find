@@ -6,6 +6,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
+import Box from '@mui/material/Box'
 
 
 const ITEM_HEIGHT = 48;
@@ -59,8 +60,9 @@ export default function ControlledOpenSelect() {
   };
 
   return (
+    <Box sx={{width: 50}}>
     <div>
-      <FormControl sx={{ m: 1, minWidth: 120 }}>
+      <FormControl sx={{ minWidth: 120 }}>
         <InputLabel id="demo-controlled-open-select-label"></InputLabel>
         <Select
           displayEmpty
@@ -98,5 +100,6 @@ export default function ControlledOpenSelect() {
         </Select>
       </FormControl>
     </div>
+    </Box>
   );
 }
