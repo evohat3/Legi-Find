@@ -37,6 +37,7 @@ export default function Search() {
     return (
         <Box  className='animate__animated animate__backInRight'
             sx={{
+                
                 marginTop: 8,
                 display: 'flex',
                 flexDirection: 'column',
@@ -70,24 +71,14 @@ export default function Search() {
                 </Grid>
                 
                 
-                <SelectSearchTypeDropdown xs={4} onChange={handleDropdownChange}></SelectSearchTypeDropdown>
-                <Grid xs={1}>
-                    <Button onClick={handleSubmit} sx={{border:1} }>Search</Button>
+                <Grid xs={4} >
+                    <SelectSearchTypeDropdown ></SelectSearchTypeDropdown> 
                 </Grid>
-                <Grid xs={7} justifyContent={'left'}>
-                <TextField style = {{width: '100%'} } id="outlined-basic" label="Enter Session Number Here" variant="outlined" size="lg"/>
+                <Grid xs={1} justifyContent={'right'} >
+                    <Button>test</Button>
                 </Grid>
-                
-                <Grid xs={1} justifyContent={'left'}>
-                    <Button  sx={{border:1} }>Search</Button>
-                </Grid>
-            </Grid>
-            {
-
-                
+            </Grid> 
                 <SearchResults></SearchResults>
-            } 
-            
         </Box>
     )
 }
@@ -97,3 +88,7 @@ export default function Search() {
 // () : ()
 
 // if x is true render this block, if false render other block
+
+//<Grid xs={1}>
+{/* <Button onClick={handleSubmit} sx={{border:1} }>Search</Button>
+</Grid> */}
