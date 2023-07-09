@@ -1,5 +1,5 @@
 import  React, { useState } from 'react';
-import { SIGNUP, LOGIN } from '../utils/mutations'
+import { SIGNUP} from '../utils/mutations'
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth'
 import Avatar from '@mui/material/Avatar';
@@ -20,6 +20,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const defaultTheme = createTheme();
 
 export default function SignUp() {
+
 
   const isLoggedIn = Auth.loggedIn();
 

@@ -1,5 +1,4 @@
-import  React, { useState, useContext } from 'react';
-import UserContext from '../utils/UserContext';
+import  React, { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
@@ -21,11 +20,15 @@ const defaultTheme = createTheme();
 
 const Login = () => {
 
+
+  const isLoggedIn = Auth.loggedIn();
+
+  console.log(isLoggedIn)
+
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
-  const [validated, setValidated] = useState(false);
+  const [validated ,setValidated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [login, { error, data }] = useMutation(LOGIN);
-  const { setUserData } = useContext(UserContext);
 
   // update state based on form input changes
   const handleInputChange = (event) => {
@@ -51,10 +54,11 @@ const Login = () => {
       const { data } = await login({
         variables: { ...userFormData },
       });
-    
+
+      // console.log('this is the user login data below')
+      // console.log(data)
+      
       Auth.login(data.login.token);
-    // Update the userData state in the App component
-    setUserData(data.login.user);
     } catch (err) {
       console.error(err);
       setShowAlert(true);
@@ -69,17 +73,6 @@ const Login = () => {
       setShowAlert(true);
     }
   };
-
-
-  // const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-  //   event.preventDefault();
-  //   const data = new FormData(event.currentTarget);
-  //   console.log({
-  //     email: data.get('email'),
-  //     password: data.get('password'),
-  //   });
-  // };
-
   return (
     <ThemeProvider theme={defaultTheme}>
 
@@ -101,7 +94,7 @@ const Login = () => {
                 <LockOutlinedIcon />
               </Avatar><Typography component="h1" variant="h5">
                   Login
-                </Typography><Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+                </Typography><Box component="form" noValidate validated={validated.toString()} onSubmit={handleSubmit} sx={{ mt: 3 }}>
                   <Alert
                     dismissible="true"
                     onClose={() => setShowAlert(false)}

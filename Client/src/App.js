@@ -19,6 +19,7 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import Auth from './utils/auth'
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -49,6 +50,10 @@ function App() {
 
   const [userData] = useState(null);
 
+
+  const isLoggedIn = Auth.loggedIn();
+
+  console.log(isLoggedIn)
 
 
   return (
