@@ -1,5 +1,5 @@
 import  React, { useState } from 'react';
-import { SIGNUP, LOGIN } from '../utils/mutations'
+import { SIGNUP} from '../utils/mutations'
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth'
 import Avatar from '@mui/material/Avatar';
@@ -15,11 +15,13 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import 'animate.css';
 
 // TODO dont need this for now but we could use this to change themes
 const defaultTheme = createTheme();
 
 export default function SignUp() {
+
 
   const isLoggedIn = Auth.loggedIn();
 
@@ -27,7 +29,6 @@ export default function SignUp() {
   const [validated, setValidated] = useState(false);
   const [,setShowAlert] = useState(false);
   const [addUser, {error}] = useMutation(SIGNUP);
-  const [loginUser] = useMutation(LOGIN)
   
 
 
@@ -77,7 +78,7 @@ export default function SignUp() {
 if (!isLoggedIn) {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" className='animate__animated animate__backInRight'>
         <CssBaseline />
         <Box
           sx={{

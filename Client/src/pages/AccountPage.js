@@ -5,11 +5,17 @@ import Grid from '@mui/material/Grid'
 import { Button, CssBaseline, TextField } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import Container from '@mui/material/Container';
+import Auth from '../utils/auth'
 
 
 const defaultTheme = createTheme()
 
 export default function Account() {
+
+    const isLoggedIn = Auth.loggedIn();
+
+    console.log( isLoggedIn)
+
     return (
         <ThemeProvider theme={defaultTheme}>
         <Container component="main" maxWidth="xs">

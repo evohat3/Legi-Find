@@ -8,10 +8,11 @@ import Button from '@mui/material/Button'
 import SearchResults from '../components/SearchResults'
 import { getSearchState, getSearchSession} from '../utils/API'
 import SelectSearchTypeDropdown from '../components/SelectSearchTypeDropdown'
+import 'animate.css';
 
 export default function Search() {
     return (
-        <Box 
+        <Box  className='animate__animated animate__backInRight'
             sx={{
                 marginTop: 8,
                 display: 'flex',
