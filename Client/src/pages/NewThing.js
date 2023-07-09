@@ -3,15 +3,9 @@ import React, { useState, useEffect } from 'react';
 // import Container from '@mui/material/Container'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
-import FormControl from '@mui/material/FormControl';
 import { getSearchState } from '../utils/API'
+
 //may need to add local storage
-
-const numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49"];
-
-// const searchresult = "searchresult";
-
-
 
 export default function NewThing() {
 
@@ -27,25 +21,49 @@ export default function NewThing() {
         }
 
         try {
+          
           const response = await getSearchState(searchInput);
-
+          console.log(searchInput)
+          console.log(response)
             if (!response.ok) {
               throw new Error('something went wrong!');
             }
 
-          const data  = await response.json();
+          let data  = await response.json();
+          console.log(data.searchresult)
+          
+          console.log()
 
-          const searchData = data.map((numbers) => ({
-            billID: numbers.bill_id,
-            changeHash: numbers.change_hash,
-            billSummary: numbers.url,
-            billText: numbers.text_url,
-            billTitle: numbers.title
-          }));
+          for (let index in data.searchresult) {
+            console.log(index)
+            console.log(data.searchresult[index]);
+          }
 
-
+          let searchData = {};
+          for (let index in data.searchresult) {
+            searchData[index] = {
+              billID: data.searchresult[index].bill_id,
+              changeHash: data.searchresult[index].change_hash,
+              bilSummary: data.searchresult[index].url,
+              billText: data.searchresult[index].text_url,
+              billTitle: data.searchresult[index].title
+            }
+            
+          }
+          // data.map((numbers) => ({
+          //   billID: numbers.bill_id,
+          //   changeHash: numbers.change_hash,
+          //   billSummary: numbers.url,
+          //   billText: numbers.text_url,
+          //   billTitle: numbers.title
+          // })
+          // );
+          
+          
+          
+          console.log(searchData);
           setSearchResults(searchData)
-          setSearchInput('');
+          
           console.log(searchData)
         } catch (err) {
           console.error(err);
