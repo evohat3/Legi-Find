@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express')
-const { User } = require('../models')
+const { User, Search } = require('../models')
 const { signToken } = require('../utils/auth')
 require('dotenv').config()
 
@@ -15,6 +15,9 @@ const resolvers = {
     findUser: async (parent, { email }) => {
       return User.findOne({ email })
     }
+    // legiQueryState: async (parent, { billID}) => {
+    //   return Search.findOne({billID})
+    // }
   },
   Mutation: {
     addUser: async (parent, { email, password, first, last }) => {

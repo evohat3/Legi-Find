@@ -1,6 +1,6 @@
 //examp[le call: https://api.legiscan.com/?key=46f60bb5da729de39fe63400d12082db&op=getBill
 import React from 'react';
-const LEGI_KEY  = process.env.REACT_APP_LEGI_KEY
+const LEGI_KEY  = "46f60bb5da729de39fe63400d12082db"
 
 //gets list of session that are avalible, need to modify state variable to filter state. Will be "&state=STATE" after session_id
 export const getSessionList = async (data) => {
@@ -63,15 +63,15 @@ export const getSessionPeople = async (session_id) => {
 
 //Searches legiscan API by state
 //need to modify year variable to filter years. Will be "&year=YEAR" after query
-export const getSearchState = async (LEGI_KEY, state, query) => {
-     await fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getSearch&state=${state}&query=${query}` ,{
-    //     method: 'POST',
-    //     body: JSON.stringify({
+export const getSearchState = (query) => {
+      return fetch(`https://api.legiscan.com/?key=46f60bb5da729de39fe63400d12082db&op=getSearch&state=ALL&query=${query}` ,{
+        // method: 'POST',
+        // body: JSON.stringify({
 
-    //     }),
-    //     header: {
-    //         'Content-type': 'application/json',
-    //         }
+        // }),
+        // header: {
+        //     'Content-type': 'application/json',
+        //     }
     //   });
     //   let data = await response.json();
     //   setPosts((data) =>[

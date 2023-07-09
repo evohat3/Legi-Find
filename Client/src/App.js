@@ -8,6 +8,8 @@ import Signup from './pages/SignupPage'
 import Search from './pages/SearchPage'
 import Account from './pages/AccountPage'
 import Dashboard from './pages/Dashboard'
+import NewThing from 
+'./pages/NewThing'
 import React, { useState }from 'react';
 import UserContext from './utils/UserContext'
 import {
@@ -64,6 +66,7 @@ function App() {
       <Route path="/search" element={<Search />} />
       <Route path="/account" element={<Account />} />
       <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/newthing" element={<NewThing />} />
 
       </Routes>
       <Footer />

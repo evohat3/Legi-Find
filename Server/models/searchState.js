@@ -3,23 +3,23 @@ const mongoose = require('mongoose')
 const { Schema } = mongoose
 
 const searchSchema = new Schema({
-  bill_id: {
+  billID: {
     type: Number,
     required: true,
     unique: true
   },
-  bill_title: {
+  changeHash: {
     type: String,
     required: true
   },
-  state: {
+  billSummary: {
     type: String
   },
-  text_url: {
+  billText: {
     type: String
   },
-  save_time: {
-    type: Number
+  billTitle: {
+    type: String
   }
 })
 
