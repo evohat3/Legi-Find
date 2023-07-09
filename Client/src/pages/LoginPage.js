@@ -1,4 +1,5 @@
-import  React, { useState } from 'react';
+import  React, { useState, useContext } from 'react';
+import UserContext from '../utils/UserContext';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
@@ -24,6 +25,7 @@ const Login = () => {
   const [validated, setValidated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [login, { error, data }] = useMutation(LOGIN);
+  const { setUserData } = useContext(UserContext);
 
   // update state based on form input changes
   const handleInputChange = (event) => {
@@ -49,11 +51,10 @@ const Login = () => {
       const { data } = await login({
         variables: { ...userFormData },
       });
-
-      // console.log('this is the user login data below')
-      // console.log(data)
-      
+    
       Auth.login(data.login.token);
+    // Update the userData state in the App component
+    setUserData(data.login.user);
     } catch (err) {
       console.error(err);
       setShowAlert(true);

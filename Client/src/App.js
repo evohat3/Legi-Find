@@ -8,7 +8,8 @@ import Signup from './pages/SignupPage'
 import Search from './pages/SearchPage'
 import Account from './pages/AccountPage'
 import Dashboard from './pages/Dashboard'
-import React from 'react';
+import React, { useState }from 'react';
+import UserContext from './utils/UserContext'
 import {
   ApolloClient,
   InMemoryCache,
@@ -43,10 +44,16 @@ const client = new ApolloClient({
 
 
 function App() {
+
+  const [userData] = useState(null);
+
+
+
   return (
     <ApolloProvider client={client}>
+      <UserContext.Provider value={userData}>
     <div>
-      
+       
     <Router>
       <ResponsiveAppBar />
         <Header />
@@ -61,7 +68,9 @@ function App() {
       </Routes>
       <Footer />
     </Router>
+    
     </div>
+    /</UserContext.Provider>
     </ApolloProvider>
   );
 }

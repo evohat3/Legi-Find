@@ -27,7 +27,6 @@ export default function SignUp() {
   const [validated, setValidated] = useState(false);
   const [,setShowAlert] = useState(false);
   const [addUser, {error}] = useMutation(SIGNUP);
-  const [loginUser] = useMutation(LOGIN)
   
 
 
