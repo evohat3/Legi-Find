@@ -3,6 +3,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Auth from '../utils/auth';
+import 'animate.css';
 
 export default function Dashboard(props) {
 
@@ -22,7 +23,7 @@ export default function Dashboard(props) {
           alignItems: 'center',
         }}
       >
-        <Container sx={{ bgcolor: 'green' }}>
+        <Container sx={{ bgcolor: 'green' }} className='animate__animated animate__backInLeft'>
           <Typography first={props.first} variant="h3" align="center">
             Welcome {props.first} ({props.last})! You are logged in! with your email: ({props.email})
           </Typography>

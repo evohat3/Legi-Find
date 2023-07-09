@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useMutation } from '@apollo/client';
 import { LOGIN } from '../utils/mutations';
 import Auth from '../utils/auth'
+import 'animate.css';
 
 // TODO remove, this demo shouldn't n<>backgroundColoreed to reset the theme.
 const defaultTheme = createTheme();
@@ -23,9 +24,9 @@ const Login = () => {
 
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   const [validated, setValidated] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
+  const [showAlert, setShowAlert] = useState(null);
   const [login, { error, data }] = useMutation(LOGIN);
-  const { setUserData } = useContext(UserContext);
+  const { userData ,setUserData } = useContext(UserContext) || {};
 
   // update state based on form input changes
   const handleInputChange = (event) => {
@@ -84,7 +85,7 @@ const Login = () => {
     <ThemeProvider theme={defaultTheme}>
 
 
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" className='animate__animated animate__backInLeft'>
         <CssBaseline />
         <Box
           sx={{
