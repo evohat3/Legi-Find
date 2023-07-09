@@ -7,7 +7,7 @@ import Grid from '@mui/material/Grid'
 import Button from '@mui/material/Button'
 // import { getSearchState, getSearchSession} from '../utils/API'
 import SelectSearchTypeDropdown from '../components/SelectSearchTypeDropdown'
-import { borderColor, height, textAlign, width } from '@mui/system'
+// import { borderColor, height, textAlign, width } from '@mui/system'
 import { Typography } from '@mui/material'
 
 export default function Search() {
