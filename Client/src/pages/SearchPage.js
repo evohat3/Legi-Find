@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState }from 'react'
 import TextField  from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 // import Container from '@mui/material/Container'
@@ -6,10 +6,33 @@ import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import Button from '@mui/material/Button'
 import SearchResults from '../components/SearchResults'
-import { getSearchState, getSearchSession} from '../utils/API'
+
 import SelectSearchTypeDropdown from '../components/SelectSearchTypeDropdown'
 
+
+
 export default function Search() {
+
+    const [userSearchData, setUserSearchData] = useState({search:'', stateName: 'all'})
+    
+    const handleSearchChange = async (event) => {
+        const {
+            target: { value },
+          } = event;
+        setUserSearchData(value)
+        console.log(userSearchData)
+    }
+
+    const handleDropdownChange = async (event) => {
+        const {
+            target: { value },
+          } = event;
+          setUserSearchData.stateName(value)
+          console.log(userSearchData)
+    }
+    const handleSubmit = async (event) => {
+        console.log(userSearchData)
+    }
     return (
         <Box 
             sx={{
@@ -31,24 +54,45 @@ export default function Search() {
                     }}
             >
                 
-                <Grid xs={7} justifyContent={'left'}>
-                    <TextField style = {{width: '100%'}} id="outlined-basic" label="Enter your search here" variant="outlined" size="lg"/>
+                <Grid 
+                component="form" 
+                xs={7} 
+                justifyContent={'left'}
+                >
+                    <TextField 
+                    style = {{width: '100%'}} 
+                    onChange={handleSearchChange}
+                    id="outlined-basic" 
+                    label="Enter your search here" 
+                    variant="outlined" 
+                    size="lg"/>
                 </Grid>
                 
                 
-                <SelectSearchTypeDropdown xs={4}></SelectSearchTypeDropdown>
+                <SelectSearchTypeDropdown xs={4} onChange={handleDropdownChange}></SelectSearchTypeDropdown>
                 <Grid xs={1}>
-                    <Button sx={{border:1}}>Search</Button>
+                    <Button onClick={handleSubmit} sx={{border:1} }>Search</Button>
                 </Grid>
                 <Grid xs={7} justifyContent={'left'}>
                 <TextField style = {{width: '100%'} } id="outlined-basic" label="Enter Session Number Here" variant="outlined" size="lg"/>
                 </Grid>
                 
                 <Grid xs={1} justifyContent={'left'}>
-                    <Button sx={{border:1}}>Search</Button>
+                    <Button  sx={{border:1} }>Search</Button>
                 </Grid>
-            </Grid>  
-            <SearchResults></SearchResults>
+            </Grid>
+            {
+
+                
+                <SearchResults></SearchResults>
+            } 
+            
         </Box>
     )
 }
+
+//on line 48 do on click event, make function that handles on sear
+
+// () : ()
+
+// if x is true render this block, if false render other block
