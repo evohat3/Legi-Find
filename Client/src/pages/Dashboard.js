@@ -30,11 +30,11 @@ export default function Dashboard(props) {
           alignItems: 'center',
         }}
       >
-        <Container sx={{ bgcolor: 'green', color: 'white', height: 400, boxShadow: '5px 5px 5px rgba(0, 0, 0, 0.2)' }} className='animate__animated animate__backInLeft'>
+        <Container sx={{ bgcolor: 'green', color: 'white', height: 500, boxShadow: '5px 5px 5px rgba(0, 0, 0, 0.2)' }} className='animate__animated animate__backInLeft'>
           <Typography first={props.first} variant="h3" align="center">
             Welcome {props.first} ({props.last})! You are logged in! with your email: ({props.email})
           </Typography>
-          <SearchPageLite maxWidth="sm" />
+          <SearchPageLite />
 
           
         </Container>

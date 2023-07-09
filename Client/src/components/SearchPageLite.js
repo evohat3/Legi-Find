@@ -7,7 +7,7 @@ import Grid from '@mui/material/Grid'
 import Button from '@mui/material/Button'
 // import { getSearchState, getSearchSession} from '../utils/API'
 import SelectSearchTypeDropdown from '../components/SelectSearchTypeDropdown'
-import { borderColor, height } from '@mui/system'
+import { borderColor, height, width } from '@mui/system'
 
 export default function Search() {
     return (
@@ -18,36 +18,41 @@ export default function Search() {
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
-                height: 200,
+                height: 300,
 
 
         }}> 
             <Grid
                 width= '80%'
                 container
-                spacing={2}
                 direction="row"
                 alignItems="center"
                 justifyContent="center"
                 backgroundColor= 'white'
-                sx={{border: 3, borderColor: 'black', height: 250}}
+                sx={{border: 3, borderColor: 'black', height: 500}}
                 
                 >
                 
-                <Grid xs={6}>
+                <Grid item xs={12}>
                     <TextField id="outlined-basic" label="Enter your search here" sx={{backgroundColor: 'white', color: 'black', '&:hover': { border:1, borderColor: 'white', color: 'white' }}}/>
                 </Grid>
+
                 
-                
-                <SelectSearchTypeDropdown xs={4}></SelectSearchTypeDropdown>
-                <Grid xs={10}>
+                <Grid item xs={12}>
                 <TextField id="outlined-basic" label="Enter Session Number Here" sx={{backgroundColor: 'white', color: 'black', '&:hover': { border:1, borderColor: 'white', color: 'white' }}}/>
                 </Grid>
-                
-                <Grid xs={10} alignContent={'start'}>
-                    <Button sx={{ width: 100, border:1, borderColor: 'black', color: 'black' }}>Search</Button>
+
+                <Grid item xs={6}>
+                <SelectSearchTypeDropdown />
                 </Grid>
-            </Grid>  
+                
+                
+                <Grid item xs={6}>
+                    <Button sx={{ width: 100, border:1, borderColor: 'black', color: 'black' }}>Search</Button>
+                </Grid> 
+
+            </Grid>
+            
         </Box>
     )
 }

@@ -27,16 +27,10 @@ const Login = () => {
   console.log(isLoggedIn)
 
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
-<<<<<<< HEAD
-  const [validated ,setValidated] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
-  const [login, { error, data }] = useMutation(LOGIN);
-=======
   const [validated, setValidated] = useState(false);
   const [showAlert, setShowAlert] = useState(null);
   const [login, { error, data }] = useMutation(LOGIN);
-  const { userData ,setUserData } = useContext(UserContext) || {};
->>>>>>> test
+  // const { userData ,setUserData } = useContext(UserContext) || {};
 
   // update state based on form input changes
   const handleInputChange = (event) => {
