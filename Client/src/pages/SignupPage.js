@@ -15,6 +15,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import 'animate.css';
 
 // TODO dont need this for now but we could use this to change themes
 const defaultTheme = createTheme();
@@ -77,7 +78,7 @@ export default function SignUp() {
 if (!isLoggedIn) {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" className='animate__animated animate__backInRight'>
         <CssBaseline />
         <Box
           sx={{

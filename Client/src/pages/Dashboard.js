@@ -3,8 +3,12 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Auth from '../utils/auth';
+<<<<<<< HEAD
 import SearchPageLite from '../components/SearchPageLite'
 import UserContext from '../utils/UserContext'
+=======
+import 'animate.css';
+>>>>>>> test
 
 export default function Dashboard(props) {
 
@@ -29,9 +33,15 @@ export default function Dashboard(props) {
           alignItems: 'center',
         }}
       >
+<<<<<<< HEAD
          <Container sx={{ bgcolor: 'green', color: 'white', height: 400, boxShadow: '5px 5px 5px rgba(0, 0, 0, 0.2)' }} maxWidth="sm">
           <Typography  variant="h3" align="center">
             Welcome You are logged in!
+=======
+        <Container sx={{ bgcolor: 'green' }} className='animate__animated animate__backInLeft'>
+          <Typography first={props.first} variant="h3" align="center">
+            Welcome {props.first} ({props.last})! You are logged in! with your email: ({props.email})
+>>>>>>> test
           </Typography>
           <SearchPageLite maxWidth="sm" />
 

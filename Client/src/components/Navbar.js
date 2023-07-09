@@ -14,6 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
+import 'animate.css';
 
 
 function ResponsiveAppBar() {
@@ -46,12 +47,15 @@ const settings = ['Profile', 'Account', 'Home' ,'Search', 'News', 'SignUp', 'Log
     <AppBar position="static" sx={{ backgroundColor: 'primary', border: 1, borderColor: 'text.primary' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <div className='animate__animated animate__backInLeft animate__delay-1s'>
+            <AdbIcon className='animate__animated animate__bounce animate__delay-3s' sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          </div>
           <Typography
             variant="h6"
             noWrap
             component="a"
             href="/"
+            className='animate__animated animate__flip animate__delay-1s'
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -65,7 +69,7 @@ const settings = ['Profile', 'Account', 'Home' ,'Search', 'News', 'SignUp', 'Log
             Legi-Find
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }} >
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -123,12 +127,13 @@ const settings = ['Profile', 'Account', 'Home' ,'Search', 'News', 'SignUp', 'Log
             </Menu>
           </Box>
 
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} className='animate__animated animate__bounce animate__delay-2s' />
           <Typography
             variant="h5"
             noWrap
             component="a"
             href="/"
+            className='animate__animated animate__flip animate__delay-1s'
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -155,9 +160,11 @@ const settings = ['Profile', 'Account', 'Home' ,'Search', 'News', 'SignUp', 'Log
         }
         return (
           <Button
+            className='animate__animated animate__backInLeft animate__delay-1s'
             key={page}
             onClick={handleCloseNavMenu}
             component={Link}
+            
             to={
               page === 'Home' ? '/' :
               page === 'Search' ? '/search' :
@@ -171,7 +178,7 @@ const settings = ['Profile', 'Account', 'Home' ,'Search', 'News', 'SignUp', 'Log
               my: 2,
               color: 'white',
               display: 'block',
-              '&:hover': { backgroundColor: 'white', color: 'black' },
+              '&:hover': { backgroundColor: 'white', color: 'black', class: 'animate__animated animate__bounce' },
             }}
           >
             {page}
@@ -184,6 +191,7 @@ const settings = ['Profile', 'Account', 'Home' ,'Search', 'News', 'SignUp', 'Log
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar
+                  className='animate__animated animate__backInRight'
                   alt="Remy Sharp"
                   src="https://i.imgur.com/IAj05FO.png"
                   sx={{ border: 3, color: 'primary.' }}
