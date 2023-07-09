@@ -38,7 +38,8 @@ function getStyles(state, stateName, theme) {
 
 export default function ControlledOpenSelect() {
     const theme = useTheme();
-    const [stateName, setStateName] = React.useState([]);;
+    const [stateName, setStateName] = React.useState([]);
+    const [userSearchData, setUserSearchData] = React.useState({search: '', state:'all',})
   const [open, setOpen] = React.useState(false);
 
   const handleChange = (event) => {
@@ -49,6 +50,12 @@ export default function ControlledOpenSelect() {
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value,
     );
+    console.log(userSearchData)
+    setUserSearchData((prevData) => ({
+      ...prevData,
+      state: value,
+    }));
+    console.log(value)
   };
 
   const handleClose = () => {
@@ -71,6 +78,7 @@ export default function ControlledOpenSelect() {
           open={open}
           onClose={handleClose}
           onOpen={handleOpen}
+          
           value={stateName}
           label="State"
           onChange={handleChange}
