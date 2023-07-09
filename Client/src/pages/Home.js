@@ -23,18 +23,18 @@ export default function Home() {
           <Box sx={{ height: 700, width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }} maxWidth="xl">
             <Container sx={{ height: 500, bgcolor: 'primary.main', boxShadow: '5px 5px 5px rgba(0, 0, 0, 0.2)' }} className='animate__animated animate__backInRight'>
               <div >
-              <Typography variant='h3' align='center' className='animate__animated animate__bounce animate__delay-1s'>
+                <Box margin={5}>
+                <Typography variant='h3' align='center' className='animate__animated animate__bounce animate__delay-2s'>
                 Welcome To Legi-Find!
               </Typography>
+                </Box>
+        
               </div>
              
               <SearchPageLite />
 
             </Container>
-    
-            <Container backgroundcolor="black" color="white" align="center" maxWidth="sm">
-              Hello
-            </Container>
+
           </Box>
         );
       } else {

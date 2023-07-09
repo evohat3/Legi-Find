@@ -15,6 +15,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
 import 'animate.css';
+import Switch from '@mui/material/Switch';
 
 
 function ResponsiveAppBar() {
@@ -186,6 +187,8 @@ const settings = ['Profile', 'Account', 'Home' ,'Search', 'News', 'SignUp', 'Log
         );
       })}
     </Box>
+
+    <Switch defaultChecked />
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
