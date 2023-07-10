@@ -11,7 +11,7 @@ const Footer = () => {
   return (
     <Container
       maxWidth="xl"
-      style={{ backgroundColor: "#1c54b2", textAlign: "center" }}
+      style={{ backgroundColor: ("#E49454"), textAlign: "center" }}
     >
       <Typography variant="h6">Legi-Find was created by .</Typography>
       <Container
