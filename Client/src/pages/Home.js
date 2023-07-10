@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 import Auth from "../utils/auth";
 import Dashboard from "./Dashboard";
 // import SearchPage from './SearchPage'
-import SearchPageLite from "../components/SearchPageLite";
+import SearchPageLite from "../components/SearchByState";
 import Grid from "@mui/material/Grid";
 import "animate.css";
 import Button from "@mui/material/Button";
@@ -24,7 +24,7 @@ export default function Home() {
   if (!isLoggedIn) {
     return (
       <Box
-        item
+        
         sx={{
           height: 700,
           width: "100%",

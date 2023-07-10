@@ -48,6 +48,7 @@ export default function Search() {
         // Converts the search results object to an array so that it can be mapped
     const searchResultArray = Object.values(data.searchresult);
         
+        console.log(searchResultArray)
       setSearchResults(searchResultArray);
 
 // TODO find a way to filter the array so that it only shows the info for the state that was selected.
