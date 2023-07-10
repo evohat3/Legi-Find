@@ -41,8 +41,8 @@ export default function SearchResults({ searchResults }) {
             <TableRow key={row.bill_id}>
               <TableCell>{row.bill_number}</TableCell>
               <TableCell>{row.title}</TableCell>
-              <TableCell>{row.text_url}</TableCell>
-              <TableCell>{row.url}</TableCell>
+              <TableCell><Link href={row.text_url}>{row.text_url}</Link></TableCell>
+              <TableCell><Link href={row.url}>{row.url}</Link></TableCell>
               <Button>Save</Button>
             </TableRow>
           ))}
