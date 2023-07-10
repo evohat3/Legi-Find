@@ -14,7 +14,6 @@ export default function Search() {
     return (
         <Box 
             sx={{
-                marginTop: 8,
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
@@ -30,8 +29,8 @@ export default function Search() {
             backgroundColor= 'white'
             sx={{border: 3, borderColor: 'black',}}> 
             
-            <Typography variant='h2' align='center'>
-                Search Legislation Here
+            <Typography variant='h4' align='center'>
+                Search By State
             </Typography>
                         
 
@@ -40,30 +39,21 @@ export default function Search() {
             <Grid
                 width= '80%'
                 container
-               
+        
                 alignItems="center"
                 justifyContent="center"
                 backgroundColor= 'white'
                 sx={{border: 3, borderColor: 'black', height: 500}}
-                
                 >
-                
-                <Grid item xs={12} sm={6} md={4}>
-                    <TextField id="outlined-basic" label="Enter your search here" sx={{backgroundColor: 'white', color: 'black'}}/>
-                </Grid>
+            
 
-                
-                <Grid item xs={12} sm={6} md={4}>
-                <TextField id="outlined-basic" label="Enter Session Number Here" sx={{backgroundColor: 'white', color: 'black'}}/>
-                </Grid>
-
-                <Grid item xs={12} sm={6} md={4}>
+                <Grid item xs={12}>
                 <SelectSearchTypeDropdown />
                 </Grid>
                 
                 
                 <Grid item xs={12}>
-                    <Button sx={{ width: 100, border:1, borderColor: 'black', color: 'black' }}>Search</Button>
+                    <Button sx={{ border:1, borderColor: 'black', color: 'black' }}>Search</Button>
                 </Grid> 
 
             </Grid>
