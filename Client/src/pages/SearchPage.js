@@ -9,6 +9,8 @@ import { getSearchState } from '../utils/API'
 import 'animate.css';
 
 export default function Search() {
+
+
   const [userSearchData, setUserSearchData] = useState({ search: '', stateName: 'all' });
   const [searchResults, setSearchResults] = useState([]);
 
@@ -21,6 +23,7 @@ export default function Search() {
   };
 
   const handleDropdownChange = (value) => {
+    
     setUserSearchData((prevData) => ({
       ...prevData,
       stateName: value,
@@ -40,7 +43,7 @@ export default function Search() {
       const data = await response.json();
       
         // ******** returns the fetch request object from utils/API object data **********
-        //     console.log(data); 
+            console.log(data); 
      
         // Converts the search results object to an array so that it can be mapped
     const searchResultArray = Object.values(data.searchresult);
@@ -50,7 +53,7 @@ export default function Search() {
 // TODO find a way to filter the array so that it only shows the info for the state that was selected.
 
 
-    //   console.log(searchResultArray)
+      console.log(searchResultArray)
 
     } catch (error) {
       console.error(error);

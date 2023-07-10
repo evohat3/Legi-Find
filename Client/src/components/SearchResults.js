@@ -7,6 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
+import { Button } from '@mui/material';
 
 function Title(props) {
   return (
@@ -31,6 +32,7 @@ export default function SearchResults({ searchResults }) {
             <TableCell>Title</TableCell>
             <TableCell>Bill Text</TableCell>
             <TableCell>Bill Information</TableCell>
+            <TableCell>Save Bill</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -39,8 +41,9 @@ export default function SearchResults({ searchResults }) {
             <TableRow key={row.bill_id}>
               <TableCell>{row.bill_number}</TableCell>
               <TableCell>{row.title}</TableCell>
-              <TableCell>{row.bill_text}</TableCell>
-              <TableCell>{row.bill_information}</TableCell>
+              <TableCell>{row.text_url}</TableCell>
+              <TableCell>{row.url}</TableCell>
+              <Button>Save</Button>
             </TableRow>
           ))}
         </TableBody>
