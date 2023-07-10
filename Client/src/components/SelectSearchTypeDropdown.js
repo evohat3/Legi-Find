@@ -28,6 +28,7 @@ const states = [
   'CA',
   'CO',
   'CT',
+  'DC',
   'DE',
   'FL',
   'GA',
