@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Auth from '../utils/auth';
-import SearchPageLite from '../components/SearchPageLite'
+import SearchPageLite from '../components/SearchByState'
 import UserContext from '../utils/UserContext'
 import 'animate.css';
 

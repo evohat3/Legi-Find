@@ -39,7 +39,8 @@ export default function SearchResults({ searchResults }) {
             <TableRow key={row.bill_id}>
               <TableCell>{row.bill_number}</TableCell>
               <TableCell>{row.title}</TableCell>
-              <TableCell>{row.bill_text}</TableCell>
+              <TableCell>{row.state
+}</TableCell>
               <TableCell>{row.bill_information}</TableCell>
             </TableRow>
           ))}
