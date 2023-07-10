@@ -184,11 +184,16 @@ const settings = ['Profile', 'Account', 'Home' ,'Search', 'News', 'SignUp', 'Log
           >
             {page}
           </Button>
+          
+  
         );
+        
       })}
     </Box>
 
-    <Switch defaultChecked />
+    
+    {/* <Switch defaultUnchecked></Switch>  */}
+    
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">

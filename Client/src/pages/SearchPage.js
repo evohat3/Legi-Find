@@ -1,86 +1,78 @@
-import React, { useState }from 'react'
-import TextField  from '@mui/material/TextField'
-import Typography from '@mui/material/Typography'
-// import Container from '@mui/material/Container'
-import Box from '@mui/material/Box'
-import Grid from '@mui/material/Grid'
-import Button from '@mui/material/Button'
-import SearchResults from '../components/SearchResults'
-
-import SelectSearchTypeDropdown from '../components/SelectSearchTypeDropdown'
+import React, { useState } from 'react';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
+import SearchResults from '../components/SearchResults';
+import SelectSearchTypeDropdown from '../components/SelectSearchTypeDropdown';
+import { getSearchState } from '../utils/API'
 import 'animate.css';
 
-
-
 export default function Search() {
+  const [userSearchData, setUserSearchData] = useState({ search: '', stateName: 'all' });
+  const [searchResults, setSearchResults] = useState([]);
 
-    const [userSearchData, setUserSearchData] = useState({search:'', stateName: 'all'})
+  const handleSearchChange = (event) => {
+    const { value } = event.target;
+    setUserSearchData((prevData) => ({
+      ...prevData,
+      search: value,
+    }));
+  };
+
+  const handleDropdownChange = (value) => {
+    setUserSearchData((prevData) => ({
+      ...prevData,
+      stateName: value,
+    }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     
-    const handleSearchChange = async (event) => {
-        const {
-            target: { value },
-          } = event;
-        setUserSearchData(value)
-        console.log(userSearchData)
-    }
+    // Retrieve the search input and from the userSearchData state on line 12
+    const { stateName, search } = userSearchData;
+    
+    try {
 
-    const handleDropdownChange = async (event) => {
-        const {
-            target: { value },
-          } = event;
-          setUserSearchData.stateName(value)
-          console.log(userSearchData)
-    }
-    const handleSubmit = async (event) => {
-        console.log(userSearchData)
-    }
-    return (
-        <Box  className='animate__animated animate__backInRight'
-            sx={{
-                
-                marginTop: 8,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center'
+        // ****** getSearchState() is the function that sends the fetch request to Legiscan **********
+      const response = await getSearchState(stateName, search);
+      const data = await response.json();
+      
+        // ******** returns the fetch request object from utils/API object data **********
+        //     console.log(data); 
+     
+        // Converts the search results object to an array so that it can be mapped
+    const searchResultArray = Object.values(data.searchresult);
+        
+      setSearchResults(searchResultArray);
 
-        }}> 
-            <Grid
-                width= '80%'
-                container
-                spacing={2}
-                direction="row"
-                alignItems="center"
-                justifyContent="center"
-                sx={{border: 1,
-                    }}
-            >
-                
-                <Grid 
-                component="form" 
-                xs={7} 
-                justifyContent={'left'}
-                >
-                    <TextField 
-                    style = {{width: '100%'}} 
-                    onChange={handleSearchChange}
-                    id="outlined-basic" 
-                    label="Enter your search here" 
-                    variant="outlined" 
-                    size="lg"/>
-                </Grid>
-                
-                
-                <Grid xs={4} >
-                    <SelectSearchTypeDropdown ></SelectSearchTypeDropdown> 
-                </Grid>
-                <Grid xs={1} justifyContent={'right'} >
-                    <Button>test</Button>
-                </Grid>
-            </Grid> 
-                <SearchResults></SearchResults>
-        </Box>
-    )
+// TODO find a way to filter the array so that it only shows the info for the state that was selected.
+
+
+    //   console.log(searchResultArray)
+
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  return (
+    <Box className="animate__animated animate__backInRight" sx={{ marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+      <Grid width="80%" container spacing={2} direction="row" alignItems="center" justifyContent="center" sx={{ border: 1 }}>
+        <Grid component="form" xs={7} justifyContent="left">
+          <TextField style={{ width: '100%' }} onChange={handleSearchChange} id="outlined-basic" label="Enter your search here" variant="outlined" size="lg" />
+        </Grid>
+        <Grid xs={4}>
+          <SelectSearchTypeDropdown onDropdownChange={handleDropdownChange} />
+        </Grid>
+        <Grid xs={1} justifyContent="right">
+          <Button onClick={handleSubmit}>Submit</Button>
+        </Grid>
+      </Grid>
+      <SearchResults searchResults={searchResults} />
+    </Box>
+  );
 }
 
 //on line 48 do on click event, make function that handles on sear
