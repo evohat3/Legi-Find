@@ -63,24 +63,9 @@ export const getSessionPeople = async (session_id) => {
 
 //Searches legiscan API by state
 //need to modify year variable to filter years. Will be "&year=YEAR" after query
-export const getSearchState = (query) => {
-      return fetch(`https://api.legiscan.com/?key=46f60bb5da729de39fe63400d12082db&op=getSearch&state=ALL&query=${query}` ,{
-        // method: 'POST',
-        // body: JSON.stringify({
-
-        // }),
-        // header: {
-        //     'Content-type': 'application/json',
-        //     }
-    //   });
-    //   let data = await response.json();
-    //   setPosts((data) =>[
-    //     data.searchresult
-    //   ])
-    //   .catch((err) => {
-    //     console.log(err.message);
-      })
-}
+export const getSearchState = (stateName, search) => {
+      return fetch(`https://api.legiscan.com/?key=46f60bb5da729de39fe63400d12082db&op=getSearch&state=${stateName}&query=${search}`
+)}
 
 //searches legiscan API by exact session ID
 export const getSearchSession = async (LEGI_KEY, session_id, query) => {
@@ -103,23 +88,8 @@ export const getSearchSession = async (LEGI_KEY, session_id, query) => {
 }
 
 //call get bill from legiscan API 
-export const getBill = async (LEGI_KEY, bill_id) => {
-    await fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getBill${bill_id}`, {
-    //     method: 'POST',
-    //     body: JSON.stringify({
-
-    //     }),
-    //     header: {
-    //         'Content-type': 'application/json',
-    //         }
-    //   });
-    //   let data = await response.json();
-    //   setPosts((data) =>[
-    //     data.bill
-    //   ])
-    //   .catch((err) => {
-    //     console.log(err.message);
-      })
+export const getBill =  (LEGI_KEY, bill_id) => {
+    return fetch(`https://api.legiscan.com/?key=${LEGI_KEY}&op=getBill${bill_id}`)   
 }
 
 //search person by id
