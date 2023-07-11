@@ -9,6 +9,7 @@ import SearchPageLite from "../components/SearchByState";
 import Grid from "@mui/material/Grid";
 import "animate.css";
 import Button from "@mui/material/Button";
+import heroImage from "../components/assets/istockphoto-154962491-612x612.jpg";
 
 export default function Home() {
   const [showComponent, setShowComponent] = useState(false);
