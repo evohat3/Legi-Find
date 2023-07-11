@@ -7,6 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
+import { Button } from '@mui/material';
 
 function Title(props) {
   return (
@@ -20,26 +21,7 @@ Title.propTypes = {
   children: PropTypes.node,
 };
 
-// Generate Order Data
-function createData(id, date, name, shipTo, paymentMethod, amount) {
-  return { id, date, name, shipTo, paymentMethod, amount };
-}
-
-const rows = [
-  createData(
-    0,
-    '16 Mar, 2019',
-    'Elvis Presley',
-    'Tupelo, MS',
-    'VISA ⠀•••• 3719',
-  )
-];
-
-function preventDefault(event) {
-  event.preventDefault();
-}
-
-export default function SearchResults() {
+export default function SearchResults({ searchResults }) {
   return (
     <React.Fragment>
       <Title>Search Results</Title>
@@ -50,21 +32,23 @@ export default function SearchResults() {
             <TableCell>Title</TableCell>
             <TableCell>Bill Text</TableCell>
             <TableCell>Bill Information</TableCell>
-
+            <TableCell>Save Bill</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell>{row.date}</TableCell>
-              <TableCell>{row.name}</TableCell>
-              <TableCell>{row.shipTo}</TableCell>
-              <TableCell>{row.paymentMethod}</TableCell>
+          {
+          searchResults.map((row) => (
+            <TableRow key={row.bill_id}>
+              <TableCell>{row.bill_number}</TableCell>
+              <TableCell>{row.title}</TableCell>
+              <TableCell><Link href={row.text_url}>{row.text_url}</Link></TableCell>
+              <TableCell><Link href={row.url}>{row.url}</Link></TableCell>
+              <Button>Save</Button>
             </TableRow>
           ))}
         </TableBody>
       </Table>
-      <Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
+      <Link color="primary" href="#" sx={{ mt: 3 }}>
         See more orders
       </Link>
     </React.Fragment>

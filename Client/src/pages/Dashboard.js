@@ -3,11 +3,11 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Auth from '../utils/auth';
-import SearchPageLite from '../components/SearchPageLite'
+import SearchPageLite from '../components/SearchByState'
 import UserContext from '../utils/UserContext'
 import 'animate.css';
 
-export default function Dashboard(props) {
+export default function Dashboard() {
 
   const isLoggedIn = Auth.loggedIn();
 
@@ -31,8 +31,8 @@ export default function Dashboard(props) {
         }}
       >
         <Container sx={{ bgcolor: 'green', color: 'white', height: 500, boxShadow: '5px 5px 5px rgba(0, 0, 0, 0.2)' }} className='animate__animated animate__backInLeft'>
-          <Typography first={props.first} variant="h3" align="center">
-            Welcome {props.first} ({props.last})! You are logged in! with your email: ({props.email})
+          <Typography  variant="h3" align="center">
+            Welcome! You are logged in! with your email:
           </Typography>
           <SearchPageLite />
 

@@ -8,7 +8,6 @@ export const LOGIN = gql`
       user {
         _id
         email
-        password
       }
     }
   }
@@ -23,7 +22,6 @@ mutation AddUserMutation($first: String!, $last: String!, $email: String!, $pass
       first
       last
       email
-      password
     }
   }
 }
