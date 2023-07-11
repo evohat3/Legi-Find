@@ -3,10 +3,31 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
+import { Paper } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles'
 import SearchResults from '../components/SearchResults';
 import SelectSearchTypeDropdown from '../components/SelectSearchTypeDropdown';
 import { getSearchState } from '../utils/API'
 import 'animate.css';
+import heroImage from "../components/assets/row-old-textbooks-fills-antique-bookshelf-generated-by-ai.jpg";
+
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#197278',
+    },
+    secondary: {
+      main: '#197278',
+    },
+  },
+});
+
+const styles ={ 
+  paperContainer: {
+    backgroundImage: `url(${heroImage})`
+  }
+}
 
 export default function Search() {
 
@@ -62,8 +83,10 @@ export default function Search() {
   };
 
   return (
-    <Box className="animate__animated animate__backInRight" sx={{ marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-      <Grid width="80%" container spacing={2} direction="row" alignItems="center" justifyContent="center" sx={{ border: 1 }}>
+    <ThemeProvider theme={theme}>
+    <Paper style={styles.paperContainer}>
+    <Box className="animate__animated animate__backInRight" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+      <Grid width="80%"  container spacing={2} direction="row" alignItems="center" justifyContent="center" sx={{ backgroundColor: 'primary.main' , border: 1 ,marginTop: 8,  }}>
         <Grid component="form" xs={7} justifyContent="left">
           <TextField style={{ width: '100%' }} onChange={handleSearchChange} id="outlined-basic" label="Enter your search here" variant="outlined" size="lg" />
         </Grid>
@@ -71,11 +94,13 @@ export default function Search() {
           <SelectSearchTypeDropdown onDropdownChange={handleDropdownChange} />
         </Grid>
         <Grid xs={1} justifyContent="right">
-          <Button onClick={handleSubmit}>Submit</Button>
+          <Button sx={{ color: 'black'}}onClick={handleSubmit}>Submit</Button>
         </Grid>
       </Grid>
       <SearchResults searchResults={searchResults} />
     </Box>
+    </Paper>
+    </ThemeProvider>
   );
 }
 

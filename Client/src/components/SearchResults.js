@@ -23,9 +23,9 @@ Title.propTypes = {
 
 export default function SearchResults({ searchResults }) {
   return (
-    <React.Fragment>
+    <React.Fragment >
       <Title>Search Results</Title>
-      <Table size="small">
+      <Table xs={{bgColor: 'primary.main'}}size="small">
         <TableHead>
           <TableRow>
             <TableCell>Bill Number</TableCell>
@@ -35,11 +35,11 @@ export default function SearchResults({ searchResults }) {
             <TableCell>Save Bill</TableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
+        <TableBody xs={{bgColor: 'primary.main',}}>
           {
           searchResults.map((row) => (
             <TableRow key={row.bill_id}>
-              <TableCell>{row.bill_number}</TableCell>
+              <TableCell xs={{color:'red'}}>{row.bill_number}</TableCell>
               <TableCell>{row.title}</TableCell>
               <TableCell><Link href={row.text_url}>{row.text_url}</Link></TableCell>
               <TableCell><Link href={row.url}>{row.url}</Link></TableCell>
