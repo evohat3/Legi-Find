@@ -5,6 +5,8 @@ import Auth from '../utils/auth'
 import { Typography } from '@mui/material';
 import 'animate.css';
 
+
+
 const Header = () => {
 
   const isLoggedIn = Auth.loggedIn()

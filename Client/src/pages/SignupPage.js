@@ -15,10 +15,27 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Paper } from '@mui/material';
 import 'animate.css';
+import { inputLabelClasses } from "@mui/material/InputLabel"
+import heroImage from "../components/assets/row-old-textbooks-fills-antique-bookshelf-generated-by-ai.jpg";
+import { fontWeight } from '@mui/system';
+import { deepPurple } from '@mui/material/colors';
 
+const theme = createTheme({
+  
+  palette: {
+  
+    secondary: deepPurple
+  },
+ 
+});
 
-const defaultTheme = createTheme();
+const styles ={ 
+  paperContainer: {
+    backgroundImage: `url(${heroImage})`
+  }
+}
 
 export default function SignUp() {
 
@@ -77,18 +94,19 @@ export default function SignUp() {
 
 if (!isLoggedIn) {
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={theme}>
+    <Paper style={styles.paperContainer}>
       <Container component="main" maxWidth="xs" className='animate__animated animate__backInRight'>
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            bgcolor: 'primary.main',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
@@ -96,15 +114,24 @@ if (!isLoggedIn) {
           </Typography>
           <Box component="form" noValidate validated={validated.toString()} onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={6} >
                 <TextField
                   name="first"
                   required
                   fullWidth
                   id="first"
                   label="First Name"
-                  
-                  onChange={handleInputChange} />
+                  onChange={handleInputChange} 
+                  sx={{
+                    
+                    "& .MuiFormLabel-root": {
+                        color: 'black'
+                    },
+                    "& .MuiFormLabel-root.Mui-focused": {
+                        color: 'black'
+                    }
+                }}
+                  />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -115,6 +142,15 @@ if (!isLoggedIn) {
                   name="last"
                   autoComplete="family-name"
                   onChange={handleInputChange}
+                  sx={{
+                    
+                    "& .MuiFormLabel-root": {
+                        color: 'black'
+                    },
+                    "& .MuiFormLabel-root.Mui-focused": {
+                        color: 'black'
+                    }
+                }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -126,11 +162,21 @@ if (!isLoggedIn) {
                   name="email"
                   autoComplete="email"
                   onChange={handleInputChange}
+                  sx={{
+                    
+                    "& .MuiFormLabel-root": {
+                        color: 'black'
+                    },
+                    "& .MuiFormLabel-root.Mui-focused": {
+                        color: 'black'
+                    }
+                }}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
                   required
+                  
                   fullWidth
                   name="password"
                   label="Password"
@@ -138,20 +184,24 @@ if (!isLoggedIn) {
                   id="password"
                   autoComplete="new-password"
                   onChange={handleInputChange}
+                  sx={{
+                    
+                    "& .MuiFormLabel-root": {
+                        color: 'black'
+                    },
+                    "& .MuiFormLabel-root.Mui-focused": {
+                        color: 'black'
+                    }
+                }}
                 />
               </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
-              </Grid>
+              
             </Grid>
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{  mt: 3, mb: 2 }}
               onSubmit={handleSubmit}
             >
               Sign Up
@@ -166,7 +216,8 @@ if (!isLoggedIn) {
           </Box>
         </Box>
       </Container>
-    </ThemeProvider>
+      </Paper>
+      </ThemeProvider>
   );
 
 }
