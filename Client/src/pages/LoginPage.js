@@ -15,9 +15,25 @@ import { useMutation } from '@apollo/client';
 import { LOGIN } from '../utils/mutations';
 import Auth from '../utils/auth'
 import 'animate.css';
+import { Paper } from '@mui/material';
+import heroImage from "../components/assets/row-old-textbooks-fills-antique-bookshelf-generated-by-ai.jpg";
+import { deepPurple } from '@mui/material/colors';
 
-// TODO remove, this demo shouldn't n<>backgroundColoreed to reset the theme.
-const defaultTheme = createTheme();
+const theme = createTheme({
+  
+  palette: {
+  
+    secondary: deepPurple
+  },
+ 
+});
+
+const styles ={ 
+  paperContainer: {
+    backgroundImage: `url(${heroImage})`
+  }
+}
+
 
 const Login = () => {
 
@@ -76,14 +92,14 @@ const Login = () => {
     }
   };
   return (
-    <ThemeProvider theme={defaultTheme}>
-
+    <ThemeProvider theme={theme}>
+    <Paper style={styles.paperContainer}>
 
       <Container component="main" maxWidth="xs" className='animate__animated animate__backInLeft'>
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            bgcolor: 'primary.main',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -155,7 +171,8 @@ const Login = () => {
       </Box> 
    
       </Container>
-    </ThemeProvider>
+      </Paper>
+        </ThemeProvider>
   );
 }
 

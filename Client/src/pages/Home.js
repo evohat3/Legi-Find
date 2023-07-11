@@ -4,12 +4,31 @@ import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Auth from "../utils/auth";
 import Dashboard from "./Dashboard";
-// import SearchPage from './SearchPage'
+import { Paper } from "@mui/material";
 import SearchPageLite from "../components/SearchByState";
 import Grid from "@mui/material/Grid";
 import "animate.css";
 import Button from "@mui/material/Button";
-import heroImage from "../components/assets/istockphoto-154962491-612x612.jpg";
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+import heroImage from "../components/assets/row-old-textbooks-fills-antique-bookshelf-generated-by-ai.jpg";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#197278',
+    },
+    secondary: {
+      main: '#197278',
+    },
+  },
+});
+
+const styles ={ 
+  paperContainer: {
+    backgroundImage: `url(${heroImage})`
+  }
+}
 
 export default function Home() {
   const [showComponent, setShowComponent] = useState(false);
@@ -24,6 +43,8 @@ export default function Home() {
 
   if (!isLoggedIn) {
     return (
+      <ThemeProvider theme={theme}>
+      <Paper style={styles.paperContainer}>
       <Box
         
         sx={{
@@ -32,6 +53,7 @@ export default function Home() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          flexDirection: "column"        
         }}
       >
         <Container
@@ -47,8 +69,12 @@ export default function Home() {
             container
             rowSpacing={1}
             columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+            sx={{backgroundImage:{heroImage}}}
+            
           >
+            
             <Grid item xs={12} sm={6} md={4}>
+              
               <Box height={300}>
                 <Typography
                   variant="h3"
@@ -58,10 +84,12 @@ export default function Home() {
                   Welcome To Legi-Find!
                 </Typography>
               </Box>
+             
             </Grid>
+             
             <Grid item xs={12} sm={6} md={4}>
             {showComponent ? (
-              
+                
                 <Box
                 className="animate__animated animate__backInRight"
                   sx={{
@@ -107,8 +135,12 @@ export default function Home() {
             )}
             </Grid>
           </Grid>
+           
         </Container>
+        
       </Box>
+      </Paper>
+      </ThemeProvider>
     );
   } else {
     return <Dashboard />;
