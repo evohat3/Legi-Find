@@ -1,4 +1,5 @@
 import  React, { useState } from 'react';
+import { Navigate } from 'react-router-dom';
 import { SIGNUP} from '../utils/mutations'
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth'
@@ -16,6 +17,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import 'animate.css';
+
 
 // TODO dont need this for now but we could use this to change themes
 const defaultTheme = createTheme();
@@ -170,4 +172,6 @@ if (!isLoggedIn) {
   );
 
 }
+
+return <Navigate to="/dashboard" replace={true} />;
 }
