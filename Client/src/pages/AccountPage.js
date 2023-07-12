@@ -18,7 +18,7 @@ export default function Account() {
 
     return (
         <ThemeProvider theme={defaultTheme}>
-        <Container component="main" maxWidth="xs">
+        <Container component="main" >
           <CssBaseline />
           <Box
           sx={{
@@ -26,12 +26,13 @@ export default function Account() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            border: 1
           }}
         >
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} > 
             <Grid xs={8}>
-                <Grid xs={6}>
+                <Grid item xs={6}>
                     <Typography 
                 sx={{ 
                     textAlign: 'left', 
@@ -39,7 +40,7 @@ export default function Account() {
                 }} 
                     >Change UserName:</Typography>
                     </Grid>     
-                    <Grid xs={6}>
+                    <Grid item xs={6}>
             <TextField 
                 sx={{ 
                     textAlign: 'left', 
@@ -47,7 +48,7 @@ export default function Account() {
                 }} 
                     >InputNewUsername</TextField>
                     </Grid> 
-                    <Grid xs={6}>
+                    <Grid item xs={6}>
                 <Typography 
                 sx={{ 
                     textAlign: 'left', 
@@ -55,7 +56,7 @@ export default function Account() {
                 }} 
                     >Change Password:</Typography>
                     </Grid>     
-                    <Grid xs={6}>
+                    <Grid item xs={6}>
             <TextField 
                 sx={{ 
                     textAlign: 'left', 
@@ -63,7 +64,7 @@ export default function Account() {
                 }} 
                     >Input New Password</TextField>
                     </Grid> 
-                    <Grid xs={6}>
+                    <Grid item xs={6}>
                     <Typography 
                         sx={{ 
                         textAlign: 'left', 
@@ -72,7 +73,7 @@ export default function Account() {
                     >Change Avatar:
                     </Typography>
                 </Grid>  
-                <Grid xs={6}>
+                <Grid item xs={6}>
                 <Button 
                 sx={{ 
                     textAlign: 'left', 
