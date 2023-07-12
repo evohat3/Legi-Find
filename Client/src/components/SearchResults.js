@@ -13,7 +13,7 @@ import { Button } from '@mui/material';
 
 function Title(props) {
   return (
-    <Typography sx={{color: 'black', backgroundColor:'primary.main'}} component="h2" variant="h6" color="primary" gutterBottom>
+    <Typography sx={{color: 'black', backgroundColor:'primary.main'}}   component="h2" variant="h6" color="primary" gutterBottom>
       {props.children}
     </Typography>
   );
