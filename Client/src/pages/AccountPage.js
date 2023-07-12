@@ -30,54 +30,59 @@ export default function Account() {
           }}
         >
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} > 
-            <Grid item xs={6}>
-                <Typography 
+            <Grid xs={8}>
+                <Grid xs={6}>
+                    <Typography 
                 sx={{ 
                     textAlign: 'left', 
                     m: 1 
                 }} 
                     >Change UserName:</Typography>
-            </Grid>     
-            <Grid item xs={6}>
+                    </Grid>     
+                    <Grid xs={6}>
             <TextField 
                 sx={{ 
                     textAlign: 'left', 
                     m: 1 
                 }} 
                     >InputNewUsername</TextField>
-            </Grid> 
-            <Grid item xs={6}>
+                    </Grid> 
+                    <Grid xs={6}>
                 <Typography 
                 sx={{ 
                     textAlign: 'left', 
                     m: 1 
                 }} 
                     >Change Password:</Typography>
-            </Grid>     
-            <Grid  item xs={6}>
+                    </Grid>     
+                    <Grid xs={6}>
             <TextField 
                 sx={{ 
                     textAlign: 'left', 
                     m: 1 
                 }} 
                     >Input New Password</TextField>
-            </Grid> 
-            <Grid  item xs={6}>
-            <Typography 
+                    </Grid> 
+                    <Grid xs={6}>
+                    <Typography 
+                        sx={{ 
+                        textAlign: 'left', 
+                        m: 1 
+                    }} 
+                    >Change Avatar:
+                    </Typography>
+                </Grid>  
+                <Grid xs={6}>
+                <Button 
                 sx={{ 
                     textAlign: 'left', 
                     m: 1 
-                }} 
-                    >Change Avatar:</Typography>
-            </Grid>  
-            <Grid  item xs={6}>
-            <Button 
-                sx={{ 
-                    textAlign: 'left', 
-                    m: 1 
-                }} 
+                  }} 
                     >This is a test of the flex grid</Button>
-            </Grid>       
+             </Grid>    
+             </Grid> 
+            <Grid>
+            </Grid>  
         </Grid>
         </Box>
         </Container>

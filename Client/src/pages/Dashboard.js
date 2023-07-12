@@ -7,29 +7,11 @@ import { useQuery } from '@apollo/client';
 import { FIND_USER } from '../utils/queries';
 import SearchPageLite from '../components/SearchByState';
 import 'animate.css';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+
 import heroImage from '../components/assets/row-old-textbooks-fills-antique-bookshelf-generated-by-ai.jpg'
 import { Paper } from '@mui/material';
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#46237A',
-    },
-    secondary: {
-      main: '#197278',
-    },
-    tritary:{
-      main: '#ECC8AE',
-    },
-    quartary:{
-      main: '#61210F',
-    },
-    pentary:{
-      main: '#DDFFD9'
-    }
-  },
-});
+
 
 const styles ={ 
   paperContainer: {
@@ -53,7 +35,7 @@ export default function Dashboard() {
     console.log(Auth.getUser())
 
     return (
-      <ThemeProvider theme={theme}>
+      
       <Paper style={styles.paperContainer}>
       <Box
         sx={{
@@ -64,7 +46,7 @@ export default function Dashboard() {
           alignItems: 'center',
         }}
       >
-        <Container sx={{ bgcolor: 'secondary.main', color: 'white', height: 500, boxShadow: '5px 5px 5px rgba(0, 0, 0, 0.2)' }} className='animate__animated animate__backInLeft'>
+        <Container sx={{ bgcolor: 'primary.main', color: 'white', height: 500, boxShadow: '5px 5px 5px rgba(0, 0, 0, 0.2)' }} className='animate__animated animate__backInLeft'>
           <Typography  variant="h3" align="center">
             Welcome! You are logged in! with your email:
           </Typography>
@@ -78,7 +60,7 @@ export default function Dashboard() {
         </Container>
       </Box>
       </Paper>
-      </ThemeProvider>
+      
     );
   }
   

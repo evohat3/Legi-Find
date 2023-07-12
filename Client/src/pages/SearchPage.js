@@ -11,13 +11,14 @@ import { getSearchState } from "../utils/API";
 import "animate.css";
 import heroImage from "../components/assets/row-old-textbooks-fills-antique-bookshelf-generated-by-ai.jpg";
 
+
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#197278",
+      main: '#197278',
     },
     secondary: {
-      main: "#000000",
+      main: '#197278',
     },
   },
 });
@@ -120,53 +121,22 @@ export default function Search() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Paper style={styles.paperContainer}>
-        <Box
-          className="animate__animated animate__backInRight"
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Grid
-            container
-            spacing={2}
-            direction="row"
-            alignItems="center"
-            justifyContent="center"
-            sx={{
-              width: "100%",
-              backgroundColor: "primary.main",
-              border: 1,
-              marginTop: 8,
-            }}
-          >
-            <Grid item xs={7} component="form" sx={{ width: "80%" }}>
-              <TextField
-                    sx={{ width: "80%" }}
-                onChange={handleSearchChange}
-                id="outlined-basic"
-                label="Enter your search here"
-                variant="outlined"
-                size="lg"
-              />
-            </Grid>
-            <Grid item xs={4}>
-              <SelectSearchTypeDropdown
-                onDropdownChange={handleDropdownChange}
-              />
-            </Grid>
-            <Grid  >
-              <Button sx={{ color: "black", '&:hover': { backgroundColor: 'white', color: 'black' }, }} onClick={handleSubmit}>
-                Submit
-              </Button>
-            </Grid>
-          </Grid>
-          <SearchResults searchResults={searchResults} theme={theme} />
-        </Box>
-      </Paper>
+    <Paper style={styles.paperContainer}>
+    <Box className="animate__animated animate__backInRight" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+      <Grid width="80%"  container spacing={2} direction="row" alignItems="center" justifyContent="center" sx={{ backgroundColor: 'primary.main' , border: 1 ,marginTop: 8,  }}>
+        <Grid component="form" xs={7} justifyContent="left">
+          <TextField style={{ width: '100%' }} onChange={handleSearchChange} id="outlined-basic" label="Enter your search here" variant="outlined" size="lg" />
+        </Grid>
+        <Grid xs={4}>
+          <SelectSearchTypeDropdown onDropdownChange={handleDropdownChange} />
+        </Grid>
+        <Grid xs={1} justifyContent="right">
+          <Button sx={{ color: 'black'}}onClick={handleSubmit}>Submit</Button>
+        </Grid>
+      </Grid>
+      <SearchResults searchResults={searchResults} />
+    </Box>
+    </Paper>
     </ThemeProvider>
   );
 }
