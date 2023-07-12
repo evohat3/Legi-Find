@@ -82,14 +82,13 @@ const handleSave = async (row) => {
           </TableRow>
         </TableHead>
         <TableBody >
-          {
-          searchResults.map((row) => (
-            <TableRow key={row.bill_id}sx={{color: 'black',backgroundColor:'primary.main'}}>
+        {searchResults.map((row, index) => (
+        <TableRow key={index} sx={{color: 'black',backgroundColor:'primary.main'}}>
               <TableCell >{row.bill_number}</TableCell>
               <TableCell>{row.title}</TableCell>
               <TableCell ><Link sx={{color: 'black'}}href={row.text_url}>{row.text_url}</Link></TableCell>
               <TableCell><Link sx={{color: 'black'}} href={row.url}>{row.url}</Link></TableCell>
-              <Button sx={{color: 'black'}}>Save</Button>
+              <TableCell><Button sx={{color: 'black'}}>Save</Button></TableCell>
             </TableRow>
           ))}
         </TableBody>
