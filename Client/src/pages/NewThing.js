@@ -23,20 +23,20 @@ export default function NewThing() {
         try {
           
           const response = await getSearchState(searchInput);
-          console.log(searchInput)
-          console.log(response)
+          // console.log(searchInput)
+          // console.log(response)
             if (!response.ok) {
               throw new Error('something went wrong!');
             }
 
           let data  = await response.json();
-          console.log(data.searchresult)
+          // console.log(data.searchresult)
           
-          console.log()
+          // console.log()
 
           for (let index in data.searchresult) {
-            console.log(index)
-            console.log(data.searchresult[index]);
+            // console.log(index)
+            // console.log(data.searchresult[index]);
           }
 
           let searchData = {};
@@ -61,10 +61,10 @@ export default function NewThing() {
           
           
           
-          console.log(searchData);
+          // console.log(searchData);
           setSearchResults(searchData)
           
-          console.log(searchData)
+          // console.log(searchData)
         } catch (err) {
           console.error(err);
         }

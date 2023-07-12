@@ -88,7 +88,7 @@ export default function Search() {
       const data = await response.json();
 
       // ******** returns the fetch request object from utils/API object data **********
-      console.log(data);
+      // console.log(data);
 
       // Converts the search results object to an array so that it can be mapped
       const searchResultArray = Object.values(data.searchresult);

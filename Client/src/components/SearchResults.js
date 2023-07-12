@@ -12,6 +12,7 @@ import Box from '@mui/material/Box'
 import Auth from '../utils/auth'
 import { useMutation } from '@apollo/client';
 import { SAVE_SEARCH } from '../utils/mutations';
+import { useApolloClient } from '@apollo/client';
 
 
 
@@ -29,36 +30,48 @@ Title.propTypes = {
 
 export default function SearchResults({ searchResults }) {
   // console.log('SearchResults component rendered')
+  const client = useApolloClient();
  
   const isLoggedin = Auth.loggedIn()
   
 
-  const [savedBills, setSavedBills] = useState('');
+  const [searchResult, setsearchResult] = useState('');
 
   
-  const [saveSearch] = useMutation(SAVE_SEARCH);
+
+  const [saveSearch, { error }] = useMutation(SAVE_SEARCH);
 
 
-const handleSave = async (row) => {
-  try {
-    // Execute the SAVE_SEARCH mutation
-          const data = searchResults
+  const handleSave = async (index) => {
+    const data = searchResults[index];
+    const savedBill = {
+      billId: data.bill_id,
+      billNumber: data.bill_number,
+      state: data.state,
+      title: data.title,
+      url: data.url,
+      changehash: data.changeHash,
+      lastaction: data.lastAction
+    };
+  
+    try {
+      await client.mutate({
+        mutation: SAVE_SEARCH,
+        variables: {
+          input: {
+            savedBills: [savedBill]
+          }
+        }
+      });
 
-
-    // Get the saved bill data from the mutation response
-    const savedBill = data;
-
-    // Update the savedBills state with the new saved bill
-    setSavedBills(savedBill);
-
-    console.log('Bill saved:', savedBills);
-  } catch (error) {
-    console.error('Error saving bill:', error);
-  }
-};
+      // console.log('Bill saved:', savedBill);
+    } catch (error) {
+      console.error('Error saving bill:', error);
+    }
+  };
 
   // console.log('Rendering SearchResults:', searchResults);
-  console.log('Saved Bills:', savedBills);
+  // console.log('Saved Bills:', searchResult);
   return (
     <React.Fragment >
       <Title  >Search Results</Title>
@@ -74,12 +87,12 @@ const handleSave = async (row) => {
         </TableHead>
         <TableBody >
         {searchResults.map((row, index) => (
-        <TableRow key={index} sx={{color: 'black',backgroundColor:'primary.main'}}>
-              <TableCell >{row.bill_number}</TableCell>
+        <TableRow  key={index} sx={{color: 'black',backgroundColor:'primary.main'}}>
+              <TableCell>{row.bill_number}</TableCell>
               <TableCell>{row.title}</TableCell>
               <TableCell ><Link sx={{color: 'black'}}href={row.text_url}>{row.text_url}</Link></TableCell>
               <TableCell><Link sx={{color: 'black'}} href={row.url}>{row.url}</Link></TableCell>
-              <TableCell><Button onClick={(row) => {}} sx={{color: 'black'}}>Save</Button></TableCell>
+              <TableCell><Button onClick={() => handleSave(index)} sx={{color: 'black'}}>Save</Button></TableCell>
             </TableRow>
           ))}
         </TableBody>

@@ -49,33 +49,39 @@ const resolvers = {
       return { token, user }
     },
 
-    saveBill: async (parent, { input }, context) => {
-      // Check if the user is authenticated
-      if (!context.user) {
-        throw new AuthenticationError('Authentication required')
-      }
+    saveSearch: async (_, { input }, context) => {
+      // console.log('saveSearch resolver invoked with context', context)
+      // if (!context.email) {
+      //   throw new AuthenticationError('Not logged in')
+      // }
 
       try {
-        // Create a new search document using the Search model
-        const newBill = new Search({
-          // ... populate the fields of the new search document
+        // Extract the necessary fields from the input object
+        const { billId, changeHash, billSummary, billText, billTitle } = input
+
+        // Create the search document
+        const search = await Search.create({
+          billId,
+          changeHash,
+          billSummary,
+          billText,
+          billTitle
         })
+        // console.log('Created search document:', search)
 
-        // Save the bill to MongoDB
-        const savedBill = await newBill.save()
-
-        // Associate the bill with the user (assuming there's a user ID field in the Search model)
-        const user = await User.findByIdAndUpdate(
-          context.user._id,
-          { $push: { savedBills: savedBill._id } },
+        // Update the user's savedBills field
+        const updatedUser = await User.findByIdAndUpdate(
+          context.email,
+          { $push: { savedBills: search._id } },
           { new: true }
-        ).populate('savedBills')
+        )
+        console.log('Updated user:', updatedUser)
 
-        // Return the updated user with the saved bill
-        return user
+        console.log('updateUser', updatedUser)
+        return updatedUser
       } catch (error) {
-        console.error('Error saving bill:', error)
-        throw new Error('Failed to save bill')
+        console.error('Error saving search:', error)
+        throw new Error('Failed to save search')
       }
     }
   }

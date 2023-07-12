@@ -3,21 +3,16 @@ const mongoose = require('mongoose')
 const { Schema } = mongoose
 
 const searchSchema = new Schema({
-  billID: {
-    type: Number
-  },
-  changeHash: {
-    type: String
-  },
-  billSummary: {
-    type: String
-  },
-  billText: {
-    type: String
-  },
-  billTitle: {
-    type: String
-  }
+  billID: Number,
+  
+  changeHash: String,
+
+  billSummary: String,
+
+  billText: String,
+
+  billTitle: String
+
 })
 
 const Search = mongoose.model('Search', searchSchema)

@@ -40,7 +40,7 @@ const Login = () => {
 
   const isLoggedIn = Auth.loggedIn();
 
-  console.log(isLoggedIn)
+  // console.log(isLoggedIn)
 
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   const [validated, setValidated] = useState(false);

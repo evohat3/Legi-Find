@@ -9,20 +9,9 @@ import SearchPageLite from "../components/SearchByState";
 import Grid from "@mui/material/Grid";
 import "animate.css";
 import Button from "@mui/material/Button";
-import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 import heroImage from "../components/assets/row-old-textbooks-fills-antique-bookshelf-generated-by-ai.jpg";
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#197278',
-    },
-    secondary: {
-      main: '#197278',
-    },
-  },
-});
 
 const styles ={ 
   paperContainer: {
@@ -39,11 +28,11 @@ export default function Home() {
 
   const isLoggedIn = Auth.loggedIn();
 
-  console.log(isLoggedIn);
+  // console.log(isLoggedIn);
 
   if (!isLoggedIn) {
     return (
-      <ThemeProvider theme={theme}>
+
       <Paper style={styles.paperContainer}>
       <Box
         
@@ -118,7 +107,7 @@ export default function Home() {
                 Quick Search by State
               </Button> 
                {/* Render the button when showComponent is false */}
-              <Button
+              {/* <Button
               className="animate__animated animate__backInRight animate__delay-4s"
               sx={{
                 justifyContent: "center",
@@ -130,7 +119,7 @@ export default function Home() {
               onClick={handleClick}
             >
               Quick Search by Bill ID
-            </Button>
+            </Button> */}
             </div>
             )}
             </Grid>
@@ -140,7 +129,6 @@ export default function Home() {
         
       </Box>
       </Paper>
-      </ThemeProvider>
     );
   } 
   return <Navigate to="/dashboard" replace={true} />;

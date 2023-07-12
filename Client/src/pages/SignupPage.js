@@ -52,7 +52,7 @@ export default function SignUp() {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    console.log(name, value);
+    // console.log(name, value);
     setUserFormData({ ...userFormData, [name]: value });
   };
 
@@ -69,7 +69,7 @@ export default function SignUp() {
       }
       setValidated(true);
       try {
-        console.log(userFormData);
+        // console.log(userFormData);
         const { data } = await addUser({
           variables: { ...userFormData },
         });

@@ -28,14 +28,26 @@ mutation AddUserMutation($first: String!, $last: String!, $email: String!, $pass
 `;
 
 export const SAVE_SEARCH = gql`
-  mutation saveSearch($searchInput: SaveBillInput!) {
-    saveBill(input: $searchInput) {
-      _id
-      billID
+mutation saveSearch($searchInput: SaveBillInput!) {
+  saveSearch(input: $searchInput) {
+    token
+    user {
+      id
+      username
+    }
+    saveSearch {
+      billId
+      billNumber
       changeHash
-      billSummary
-      billText
-      billTitle
+      lastAction
+      lastActionDate
+      relevance
+      researchUrl
+      state
+      textUrl
+      title
+      url
     }
   }
+}
 `;

@@ -12,9 +12,9 @@ const defaultTheme = createTheme()
 
 export default function Account() {
 
-    const isLoggedIn = Auth.loggedIn();
+    // const isLoggedIn = Auth.loggedIn();
 
-    console.log( isLoggedIn)
+    // console.log( isLoggedIn)
 
     return (
         <ThemeProvider theme={defaultTheme}>
