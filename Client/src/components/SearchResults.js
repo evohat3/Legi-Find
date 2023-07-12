@@ -42,25 +42,16 @@ export default function SearchResults({ searchResults }) {
 const handleSave = async (row) => {
   try {
     // Execute the SAVE_SEARCH mutation
-    const { data } = await saveSearch({
-      variables: {
-        searchInput: {
-          billID: row.bill_id,
-          billSummary: row.summary,
-          billText: row.text,
-          billTitle: row.title,
-          changeHash: row.change_hash
-        }
-      }
-    });
+          const data = searchResults
+
 
     // Get the saved bill data from the mutation response
-    const savedBill = data.saveBill;
+    const savedBill = data;
 
     // Update the savedBills state with the new saved bill
-    setSavedBills((prevBills) => [...prevBills, savedBill]);
+    setSavedBills(savedBill);
 
-    console.log('Bill saved:', savedBill);
+    console.log('Bill saved:', savedBills);
   } catch (error) {
     console.error('Error saving bill:', error);
   }
@@ -88,7 +79,7 @@ const handleSave = async (row) => {
               <TableCell>{row.title}</TableCell>
               <TableCell ><Link sx={{color: 'black'}}href={row.text_url}>{row.text_url}</Link></TableCell>
               <TableCell><Link sx={{color: 'black'}} href={row.url}>{row.url}</Link></TableCell>
-              <TableCell><Button sx={{color: 'black'}}>Save</Button></TableCell>
+              <TableCell><Button onClick={(row) => {}} sx={{color: 'black'}}>Save</Button></TableCell>
             </TableRow>
           ))}
         </TableBody>
