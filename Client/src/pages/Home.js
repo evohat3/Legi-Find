@@ -3,7 +3,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Auth from "../utils/auth";
-import Dashboard from "./Dashboard";
+import { Navigate } from 'react-router-dom';
 import { Paper } from "@mui/material";
 import SearchPageLite from "../components/SearchByState";
 import Grid from "@mui/material/Grid";
@@ -142,7 +142,6 @@ export default function Home() {
       </Paper>
       </ThemeProvider>
     );
-  } else {
-    return <Dashboard />;
-  }
+  } 
+  return <Navigate to="/dashboard" replace={true} />;
 }

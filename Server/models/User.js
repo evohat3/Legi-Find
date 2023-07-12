@@ -20,7 +20,13 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: true
-  }
+  },
+  savedBills: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Search'
+    }
+  ]
 })
 
 userSchema.pre('save', async function (next) {

@@ -1,4 +1,5 @@
 import  React, { useState } from 'react';
+import { Navigate } from 'react-router-dom';
 import { SIGNUP} from '../utils/mutations'
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth'
@@ -221,4 +222,6 @@ if (!isLoggedIn) {
   );
 
 }
+
+return <Navigate to="/dashboard" replace={true} />;
 }
