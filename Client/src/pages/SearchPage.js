@@ -12,16 +12,7 @@ import 'animate.css';
 import heroImage from "../components/assets/row-old-textbooks-fills-antique-bookshelf-generated-by-ai.jpg";
 
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#197278',
-    },
-    secondary: {
-      main: '#197278',
-    },
-  },
-});
+
 
 const styles ={ 
   paperContainer: {
@@ -83,7 +74,7 @@ export default function Search() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    
     <Paper style={styles.paperContainer}>
     <Box className="animate__animated animate__backInRight" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
       <Grid width="80%"  container spacing={2} direction="row" alignItems="center" justifyContent="center" sx={{ backgroundColor: 'primary.main' , border: 1 ,marginTop: 8,  }}>
@@ -100,7 +91,7 @@ export default function Search() {
       <SearchResults searchResults={searchResults} />
     </Box>
     </Paper>
-    </ThemeProvider>
+    
   );
 }
 
