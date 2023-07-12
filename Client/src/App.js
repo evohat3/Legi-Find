@@ -51,9 +51,9 @@ function App() {
   const [userData] = useState(null);
 
 
-  const isLoggedIn = Auth.loggedIn();
+  // const isLoggedIn = Auth.loggedIn();
 
-  console.log(isLoggedIn)
+  // console.log(isLoggedIn)
 
 
   return (

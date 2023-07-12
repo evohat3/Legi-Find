@@ -30,7 +30,7 @@ export default function Account() {
           }}
         >
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} > 
-            <Grid xs={6}>
+            <Grid item xs={6}>
                 <Typography 
                 sx={{ 
                     textAlign: 'left', 
@@ -38,7 +38,7 @@ export default function Account() {
                 }} 
                     >Change UserName:</Typography>
             </Grid>     
-            <Grid xs={6}>
+            <Grid item xs={6}>
             <TextField 
                 sx={{ 
                     textAlign: 'left', 
@@ -46,7 +46,7 @@ export default function Account() {
                 }} 
                     >InputNewUsername</TextField>
             </Grid> 
-            <Grid xs={6}>
+            <Grid item xs={6}>
                 <Typography 
                 sx={{ 
                     textAlign: 'left', 
@@ -54,7 +54,7 @@ export default function Account() {
                 }} 
                     >Change Password:</Typography>
             </Grid>     
-            <Grid xs={6}>
+            <Grid  item xs={6}>
             <TextField 
                 sx={{ 
                     textAlign: 'left', 
@@ -62,7 +62,7 @@ export default function Account() {
                 }} 
                     >Input New Password</TextField>
             </Grid> 
-            <Grid xs={6}>
+            <Grid  item xs={6}>
             <Typography 
                 sx={{ 
                     textAlign: 'left', 
@@ -70,7 +70,7 @@ export default function Account() {
                 }} 
                     >Change Avatar:</Typography>
             </Grid>  
-            <Grid xs={6}>
+            <Grid  item xs={6}>
             <Button 
                 sx={{ 
                     textAlign: 'left', 
