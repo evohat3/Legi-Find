@@ -176,10 +176,9 @@ const settings = ['Profile', 'Account', 'Home' ,'Search', 'News', 'SignUp', 'Log
               undefined
             }
             sx={{
-              my: 2,
               color: 'white',
               display: 'block',
-              '&:hover': { backgroundColor: 'white', color: 'black', class: 'animate__animated animate__bounce' },
+              '&:hover': { backgroundColor: 'white', color: 'black' },
             }}
           >
             {page}

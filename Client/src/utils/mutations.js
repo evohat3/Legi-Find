@@ -26,3 +26,16 @@ mutation AddUserMutation($first: String!, $last: String!, $email: String!, $pass
   }
 }
 `;
+
+export const SAVE_SEARCH = gql`
+  mutation saveSearch($searchInput: SaveBillInput!) {
+    saveBill(input: $searchInput) {
+      _id
+      billID
+      changeHash
+      billSummary
+      billText
+      billTitle
+    }
+  }
+`;

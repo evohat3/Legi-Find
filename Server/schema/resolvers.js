@@ -15,9 +15,7 @@ const resolvers = {
     findUser: async (parent, { email }) => {
       return User.findOne({ email })
     }
-    // legiQueryState: async (parent, { billID}) => {
-    //   return Search.findOne({billID})
-    // }
+
   },
   Mutation: {
     addUser: async (parent, { email, password, first, last }) => {
@@ -49,6 +47,36 @@ const resolvers = {
       const token = signToken(user)
 
       return { token, user }
+    },
+
+    saveBill: async (parent, { input }, context) => {
+      // Check if the user is authenticated
+      if (!context.user) {
+        throw new AuthenticationError('Authentication required')
+      }
+
+      try {
+        // Create a new search document using the Search model
+        const newBill = new Search({
+          // ... populate the fields of the new search document
+        })
+
+        // Save the bill to MongoDB
+        const savedBill = await newBill.save()
+
+        // Associate the bill with the user (assuming there's a user ID field in the Search model)
+        const user = await User.findByIdAndUpdate(
+          context.user._id,
+          { $push: { savedBills: savedBill._id } },
+          { new: true }
+        ).populate('savedBills')
+
+        // Return the updated user with the saved bill
+        return user
+      } catch (error) {
+        console.error('Error saving bill:', error)
+        throw new Error('Failed to save bill')
+      }
     }
   }
 }

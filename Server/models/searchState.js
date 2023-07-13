@@ -4,13 +4,10 @@ const { Schema } = mongoose
 
 const searchSchema = new Schema({
   billID: {
-    type: Number,
-    required: true,
-    unique: true
+    type: Number
   },
   changeHash: {
-    type: String,
-    required: true
+    type: String
   },
   billSummary: {
     type: String
