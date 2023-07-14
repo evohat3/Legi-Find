@@ -68,7 +68,7 @@ const Login = () => {
     }
     setValidated(true);
     try {
-      // console.log('userFormData:', userFormData);
+      console.log('userFormData:', userFormData);
       const { data } = await login({
         variables: { ...userFormData },
       });

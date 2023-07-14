@@ -8,17 +8,15 @@ import TableRow from '@mui/material/TableRow';
 import PropTypes from 'prop-types';
 import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
-import Box from '@mui/material/Box'
-import Auth from '../utils/auth'
-import { useMutation } from '@apollo/client';
+import Box from '@mui/material/Box';
+import Auth from '../utils/auth';
+import { useMutation, } from '@apollo/client';
 import { SAVE_SEARCH } from '../utils/mutations';
-import { useApolloClient } from '@apollo/client';
-
 
 
 function Title(props) {
   return (
-    <Typography sx={{color: 'black', backgroundColor:'primary.main'}}   component="h2" variant="h6" color="primary" gutterBottom>
+    <Typography sx={{ color: 'black', backgroundColor: 'primary.main' }} component="h2" variant="h6" color="primary" gutterBottom>
       {props.children}
     </Typography>
   );
@@ -29,70 +27,66 @@ Title.propTypes = {
 };
 
 export default function SearchResults({ searchResults }) {
-  // console.log('SearchResults component rendered')
-  const client = useApolloClient();
- 
-  const isLoggedin = Auth.loggedIn()
-  
 
-  const [searchResult, setsearchResult] = useState('');
 
-  
+  const [searchResult, setSearchResults] = useState('');
 
-  const [saveSearch, { error }] = useMutation(SAVE_SEARCH);
 
+
+  const [saveSearch, { loading, error, data }] = useMutation(SAVE_SEARCH);
 
   const handleSave = async (index) => {
-    const data = searchResults[index];
-    const savedBill = {
-      billId: data.bill_id,
-      billNumber: data.bill_number,
-      state: data.state,
-      title: data.title,
-      url: data.url,
-      changehash: data.changeHash,
-      lastaction: data.lastAction
-    };
+    const searchData = searchResults[index];
+  
+    console.log(searchData)
+
+   
   
     try {
-      await client.mutate({
-        mutation: SAVE_SEARCH,
-        variables: {
-          input: {
-            savedBills: [savedBill]
-          }
-        }
-      });
-
-      // console.log('Bill saved:', savedBill);
+const { data } = await saveSearch({
+  variables: {
+    billId: searchData.bill_id,
+    billNumber: searchData.bill_number,
+    changeHash: searchData.change_hash,
+    lastAction: searchData.last_action,
+    lastActionDate: searchData.last_action_date,
+    relevance: searchData.relevance,
+    researchUrl: searchData.research_url,
+    state: searchData.state,
+    textUrl: searchData.text_url,
+    title: searchData.title,
+    url: searchData.url,
+  },
+});
+      console.log('Bill saved:', data);
     } catch (error) {
       console.error('Error saving bill:', error);
     }
   };
+  
 
-  // console.log('Rendering SearchResults:', searchResults);
-  // console.log('Saved Bills:', searchResult);
+  console.log('Saved Bills:', searchResult);
   return (
-    <React.Fragment >
-      <Title  >Search Results</Title>
-      <Table size="small" sx={{backgroundColor:'primary.main'}} >
-        <TableHead >
-          <TableRow >
-            <TableCell >Bill Number</TableCell>
+    <React.Fragment>
+      <Title>Search Results</Title>
+      <Table size="small" sx={{ backgroundColor: 'primary.main' }}>
+        <TableHead>
+          <TableRow>
+            <TableCell>Bill Number</TableCell>
             <TableCell>Title</TableCell>
             <TableCell>Bill Text</TableCell>
             <TableCell>Bill Information</TableCell>
             <TableCell>Save Bill</TableCell>
           </TableRow>
         </TableHead>
-        <TableBody >
-        {searchResults.map((row, index) => (
-        <TableRow  key={index} sx={{color: 'black',backgroundColor:'primary.main'}}>
+        <TableBody>
+          {searchResults.map((row, index) => (
+            <TableRow key={index} sx={{ color: 'black', backgroundColor: 'primary.main' }}>
               <TableCell>{row.bill_number}</TableCell>
               <TableCell>{row.title}</TableCell>
-              <TableCell ><Link sx={{color: 'black'}}href={row.text_url}>{row.text_url}</Link></TableCell>
-              <TableCell><Link sx={{color: 'black'}} href={row.url}>{row.url}</Link></TableCell>
-              <TableCell><Button onClick={() => handleSave(index)} sx={{color: 'black'}}>Save</Button></TableCell>
+              <TableCell><Link sx={{ color: 'black' }} href={row.text_url}>{row.text_url}</Link></TableCell>
+              <TableCell><Link sx={{ color: 'black' }} href={row.url}>{row.url}</Link></TableCell>
+              <TableCell><Button onClick={() => handleSave(index)} sx={{ color: 'black' }}>Save</Button></TableCell>
             </TableRow>
           ))}
         </TableBody>
