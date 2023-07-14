@@ -1,13 +1,5 @@
 const { gql } = require('apollo-server-express')
 
-// TODO: add bill and array and saved bills
-// legiQueryState(billID: String): searchState
-// type searchState {
-//   billID: ID
-//   changehash: String
-//   billSummary: String
-//   billText: String
-//   billTitle: String
 const typeDefs = gql`
   type Auth {
     token: ID
@@ -35,8 +27,6 @@ const typeDefs = gql`
     title: String
     url: String
   }
-
-
 
   type Query {
     hello: String

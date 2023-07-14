@@ -35,14 +35,21 @@ export default function SearchResults({ searchResults }) {
 
   const [saveSearch, { loading, error, data }] = useMutation(SAVE_SEARCH);
 
+// ** Saves data that is passed down to the SearchResults component as props. refer to line29: export default function SearchResults({ searchResults })
+// **** Since the Legi-scan api data is an array of objects by default, we pass index as an argument to the handleSave and define them both on line 89 onClick={() => handleSave(index)}
   const handleSave = async (index) => {
+
+    // We take the specific index (the bill) that we clicked on and point that specific object to the  ** searchData ** variable.
     const searchData = searchResults[index];
   
-    console.log(searchData)
-
-   
-  
+    // ** uncomment to get the bill you clicked save on logged in the console on Browser
+    // console.log(searchData)
     try {
+
+      // *** Creates a { data } object and ties the variables to it using the properties from the searchData variable.
+     // notice that the data.property keys are camelCase and the values are snake_case
+     // when you console.log searchData the property names it returns are snake_case
+     // seemed like things would be easier to make it camel case when its stored in our mongo db server
 const { data } = await saveSearch({
   variables: {
     billId: searchData.bill_id,
@@ -80,13 +87,23 @@ const { data } = await saveSearch({
           </TableRow>
         </TableHead>
         <TableBody>
+
+          {/*   this jsx logic below takes the searchResults prop 
+              data which is all of the data from the state selected, 
+              which all of the data is an array of objects so it takes
+              the array and maps out all the data for each bill for the state
+              and spits them out into rows on the table */}
+
           {searchResults.map((row, index) => (
             <TableRow key={index} sx={{ color: 'black', backgroundColor: 'primary.main' }}>
               <TableCell>{row.bill_number}</TableCell>
               <TableCell>{row.title}</TableCell>
               <TableCell><Link sx={{ color: 'black' }} href={row.text_url}>{row.text_url}</Link></TableCell>
               <TableCell><Link sx={{ color: 'black' }} href={row.url}>{row.url}</Link></TableCell>
-              <TableCell><Button onClick={() => handleSave(index)} sx={{ color: 'black' }}>Save</Button></TableCell>
+
+                                  {/* Here is where the handleSave function is invoked and 
+                                  it grabs the specific object tied to the array via its index */}
+              <TableCell><Button onClick={() => handleSave(index)} sx={{ color: 'black', '&:hover': { backgroundColor: 'white', color: 'black' } }}>Save</Button></TableCell>
             </TableRow>
           ))}
         </TableBody>

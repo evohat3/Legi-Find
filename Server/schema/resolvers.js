@@ -57,11 +57,12 @@ const resolvers = {
       return { token, user }
     },
 
+    // *** saveSearch is invoked and takes in the bill data from the API
+
     saveSearch: async (_, { billId, billNumber, changeHash, lastAction, lastActionDate, relevance, researchUrl, state, textUrl, title, url }, context) => {
       console.log('saveSearch resolver invoked with context', context)
-      // Extract the necessary fields from the input object
 
-      // Create the search document
+      // Create the search document that will store the saved searches
       const search = await Search.create({
         billId,
         billNumber,
@@ -77,7 +78,7 @@ const resolvers = {
       })
       // console.log('Created search document:', search)
 
-      // Update the user's savedBills field
+      // Update the user's savedBills array so that it will populate the saved bills
       const user = await User.findOneAndUpdate(
         { _id: context.user._id },
         { $push: { savedBills: search._id } },
