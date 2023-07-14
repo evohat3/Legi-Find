@@ -44,7 +44,7 @@ const Login = () => {
 
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   const [validated, setValidated] = useState(false);
-  const [showAlert, setShowAlert] = useState(null);
+  const [showAlert, setShowAlert] = useState(false);
   const [login, { error, data }] = useMutation(LOGIN);
   // const { userData ,setUserData } = useContext(UserContext) || {};
 
@@ -113,14 +113,7 @@ const Login = () => {
               </Avatar><Typography component="h1" variant="h5">
                   Login
                 </Typography><Box component="form" noValidate validated={validated.toString()} onSubmit={handleSubmit} sx={{ mt: 3 }}>
-                  <Alert
-                    dismissible="true"
-                    onClose={() => setShowAlert(false)}
-                    show={showAlert ? 'true' : undefined}
-                    variant='danger'
-                  >
-                    Something went wrong with your login credentials!
-                  </Alert>
+                 
 
                   <Grid container spacing={2}>
                     <Grid item xs={12}>
