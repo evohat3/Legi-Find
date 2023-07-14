@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const { AuthenticationError } = require('apollo-server-express')
 const { User, Search } = require('../models')
 const { signToken } = require('../utils/auth')
@@ -12,8 +13,15 @@ const expiration = process.env.EXPIRES_IN
 const resolvers = {
   Query: {
     hello: () => 'Hello, World!',
+    users: async () => {
+      return User.find().populate('savedBills')
+    },
     findUser: async (parent, { email }) => {
       return User.findOne({ email })
+    },
+    searches: async (parent, { email }) => {
+      const params = email ? { email } : {}
+      return Search.findOneAndRemove(params)
     }
 
   },
@@ -22,7 +30,7 @@ const resolvers = {
       const user = await User.create({ email, password, first, last })
       const token = signToken(user, secret, expiration)
 
-      return { token, user: { first, last, email, password } }
+      return { token, user }
     },
     updateUser: async (parent, args, context) => {
       if (context.user) {
@@ -44,39 +52,42 @@ const resolvers = {
         throw new AuthenticationError('Incorrect credentials')
       }
 
-      const token = signToken(user)
+      const token = signToken(user, secret, expiration)
 
       return { token, user }
     },
 
-    saveBill: async (parent, { input }, context) => {
-      // Check if the user is authenticated
-      if (!context.user) {
-        throw new AuthenticationError('Authentication required')
-      }
+    // *** saveSearch is invoked and takes in the bill data from the API
 
-      try {
-        // Create a new search document using the Search model
-        const newBill = new Search({
-          // ... populate the fields of the new search document
-        })
+    saveSearch: async (_, { billId, billNumber, changeHash, lastAction, lastActionDate, relevance, researchUrl, state, textUrl, title, url }, context) => {
+      console.log('saveSearch resolver invoked with context', context)
 
-        // Save the bill to MongoDB
-        const savedBill = await newBill.save()
+      // Create the search document that will store the saved searches
+      const search = await Search.create({
+        billId,
+        billNumber,
+        changeHash,
+        lastAction,
+        lastActionDate,
+        relevance,
+        researchUrl,
+        state,
+        textUrl,
+        title,
+        url
+      })
+      // console.log('Created search document:', search)
 
-        // Associate the bill with the user (assuming there's a user ID field in the Search model)
-        const user = await User.findByIdAndUpdate(
-          context.user._id,
-          { $push: { savedBills: savedBill._id } },
-          { new: true }
-        ).populate('savedBills')
+      // Update the user's savedBills array so that it will populate the saved bills
+      const user = await User.findOneAndUpdate(
+        { _id: context.user._id },
+        { $push: { savedBills: search._id } },
+        { new: true }
 
-        // Return the updated user with the saved bill
-        return user
-      } catch (error) {
-        console.error('Error saving bill:', error)
-        throw new Error('Failed to save bill')
-      }
+      )
+      console.log('Updated user:', user)
+
+      return user
     }
   }
 }

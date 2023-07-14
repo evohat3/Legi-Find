@@ -4,7 +4,6 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import { Paper } from "@mui/material";
-
 import SearchResults from "../components/SearchResults";
 import SelectSearchTypeDropdown from "../components/SelectSearchTypeDropdown";
 import { getSearchState } from "../utils/API";
@@ -88,7 +87,7 @@ export default function Search() {
       const data = await response.json();
 
       // ******** returns the fetch request object from utils/API object data **********
-      console.log(data);
+      // console.log(data);
 
       // Converts the search results object to an array so that it can be mapped
       const searchResultArray = Object.values(data.searchresult);
@@ -109,7 +108,7 @@ export default function Search() {
   };
 
   return (
-    
+
     <Paper style={styles.paperContainer}>
     <Box className="animate__animated animate__backInRight" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
       <Grid width="80%"  container spacing={2} direction="row" alignItems="center" justifyContent="center" sx={{ backgroundColor: 'primary.main' , border: 1 ,marginTop: 8,  }}>
@@ -117,7 +116,9 @@ export default function Search() {
           <TextField style={{ width: '100%' }} onChange={handleSearchChange} id="outlined-basic" label="Enter your search here" variant="outlined" size="lg" />
         </Grid>
         <Grid item xs={4}>
-          <SelectSearchTypeDropdown onDropdownChange={handleDropdownChange} />
+
+             <SelectSearchTypeDropdown onDropdownChange={handleDropdownChange} />
+
         </Grid>
         <Grid item xs={1} justifyContent="right">
           <Button sx={{ color: 'black'}}onClick={handleSubmit}>Submit</Button>
@@ -126,7 +127,7 @@ export default function Search() {
       <SearchResults searchResults={searchResults} />
     </Box>
     </Paper>
-  
+
   );
 }
 

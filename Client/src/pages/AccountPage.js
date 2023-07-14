@@ -30,10 +30,12 @@ function createData(name, calories, fat, carbs, protein) {
 const defaultTheme = createTheme()
 
 export default function Account() {
-    
-    const isLoggedIn = Auth.loggedIn();
 
-    console.log( isLoggedIn)
+
+    // const isLoggedIn = Auth.loggedIn();
+
+
+    // console.log( isLoggedIn)
 
     return (
         <ThemeProvider theme={defaultTheme}>
