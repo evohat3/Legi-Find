@@ -14,7 +14,7 @@ import heroImage from '../components/assets/row-old-textbooks-fills-antique-book
 import { Paper } from '@mui/material';
 // we can use link to navigate to future components/pages
 // import { Link } from '@mui/material/Link'
-
+import {useParams} from 'react-router-dom'
 //The useNavigate will automatically navigate to what ever route you put it
 //when it is rendered
 import { useNavigate } from 'react-router-dom';
@@ -30,7 +30,8 @@ const styles ={
 
 export default function Dashboard() {
 
-
+const {id} = useParams()
+console.log(id)
 
   // this state will set state of either showing the search box
   // or the quick search button
@@ -48,16 +49,12 @@ const isLoggedIn = Auth.loggedIn
 
 
 
-
-
-
-
-
-  
   if (!isLoggedIn) {
     navigate('/'); // Redirect to 'if not logged in
   } 
-    // console.log(Auth.getUser())
+
+    
+   
 
     return (
       
@@ -72,9 +69,8 @@ const isLoggedIn = Auth.loggedIn
         }}
       >
         <Container sx={{ bgcolor: 'primary.main', color: 'white', height: 500, boxShadow: '5px 5px 5px rgba(0, 0, 0, 0.2)' }} className='animate__animated animate__backInLeft'>
-          <Typography  variant="h3" align="center">
+          <Typography  variant="h3" align="center" >
             Welcome to Legi-Find! 
-
             
 
             
