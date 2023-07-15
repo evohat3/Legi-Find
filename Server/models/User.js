@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt')
 const userSchema = new Schema({
   first: {
     type: String,
-    required: true
+    required: true,
   },
   last: {
     type: String,
@@ -15,11 +15,13 @@ const userSchema = new Schema({
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
+    match: [/.+@.+\..+/, 'Must match an email address!']
   },
   password: {
     type: String,
-    required: true
+    required: true,
+    minlength: 5
   },
   savedBills: [
     {

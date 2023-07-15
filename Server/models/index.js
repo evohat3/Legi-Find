@@ -1,4 +1,4 @@
 const User = require('./User')
-const Search = require('./SavedSearches')
+const Search = require('./savedSearches')
 
 module.exports = { User, Search }

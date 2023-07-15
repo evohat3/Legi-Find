@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -16,6 +16,8 @@ import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
 import 'animate.css';
 import Switch from '@mui/material/Switch';
+import { useQuery } from '@apollo/client';
+import { QUERY_ME } from '../utils/queries';
 
 
 function ResponsiveAppBar() {
@@ -24,6 +26,10 @@ function ResponsiveAppBar() {
 const settings = ['Profile', 'Account', 'Home' ,'Search', 'News', 'SignUp', 'Login', 'Dashboard', 'Logout',];
 
   const isLoggedIn = Auth.loggedIn();
+  const { loading, error, data } = useQuery(QUERY_ME);
+  const user = data?.me;
+
+  console.log(user)
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -118,7 +124,7 @@ const settings = ['Profile', 'Account', 'Home' ,'Search', 'News', 'SignUp', 'Log
                         page === 'Search' ? '/search' : 
                         page === 'Login' ? '/login' : 
                         page === 'SignUp' ? '/signup' :
-                        page === 'Dashboard' ? '/dashboard' :
+                        page === 'Dashboard' ? `/dashboard/` :
                          undefined}
                     >
                       <Typography textAlign="center">{page}</Typography>
@@ -172,7 +178,7 @@ const settings = ['Profile', 'Account', 'Home' ,'Search', 'News', 'SignUp', 'Log
               page === 'News' ? '/news' :
               page === 'Login' ? '/login' :
               page === 'SignUp' ? '/signup' :
-              page === 'Dashboard' ? '/dashboard' :
+              page === 'Dashboard' ? `/dashboard` :
               undefined
             }
             sx={{
@@ -254,7 +260,7 @@ const settings = ['Profile', 'Account', 'Home' ,'Search', 'News', 'SignUp', 'Log
                   }
                   to={
                     setting === 'Account' ? '/account' :
-                    setting === 'Dashboard' ? '/dashboard' :
+                    setting === 'Dashboard' ? `/dashboard` :
                     setting === 'Logout' ? '/' : 
                     setting === 'Login' ? '/login' :
                     setting === 'SignUp' ? '/signup' :

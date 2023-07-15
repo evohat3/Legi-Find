@@ -11,10 +11,10 @@ const typeDefs = gql`
     password: String
     first: String
     last: String
-    savedBills: [saveSearch]
+    savedBills: [SavedSearch]
   }
 
-  type saveSearch {
+  type SavedSearch {
     billId: ID
     billNumber: String
     changeHash: String
@@ -30,9 +30,10 @@ const typeDefs = gql`
 
   type Query {
     hello: String
-    findUser(email: String): User
+    findUser(_id: ID!): User
     users:[User]
-    searches:[saveSearch]
+    searches:[SavedSearch]
+    me: User
   }
 
   type Mutation {
@@ -50,7 +51,7 @@ const typeDefs = gql`
       state: String
       textUrl: String
       title: String
-      url: String): saveSearch
+      url: String): SavedSearch
   }
 `
 module.exports = typeDefs

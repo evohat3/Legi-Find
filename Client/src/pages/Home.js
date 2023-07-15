@@ -131,5 +131,7 @@ export default function Home() {
       </Paper>
     );
   } 
+
+
   return <Navigate to="/dashboard" replace={true} />;
 }

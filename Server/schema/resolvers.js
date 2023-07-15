@@ -16,12 +16,18 @@ const resolvers = {
     users: async () => {
       return User.find().populate('savedBills')
     },
-    findUser: async (parent, { email }) => {
-      return User.findOne({ email })
+    findUser: async (parent, { _id }) => {
+      return User.findOne({ _id }).populate('savedBills');
     },
-    searches: async (parent, { email }) => {
-      const params = email ? { email } : {}
-      return Search.findOneAndRemove(params)
+    searches: async (parent, { _id }) => {
+      const params = _id ? {_id } : {}
+      return Search.find(params)
+    },
+    me: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOne({ _id: context.user._id }).populate('savedBills')
+      }
+      throw new AuthenticationError('You need to be logged in!')
     }
 
   },

@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { Redirect, BrowserRouter as Router, Routes, Route, Switch } from 'react-router-dom';
 import Home from './pages/Home'
 import ResponsiveAppBar from './components/Navbar'
 import Footer from './components/Footer'
@@ -18,6 +18,7 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import Auth from './utils/auth'
 
 
 // Construct our main GraphQL API endpoint
@@ -50,7 +51,8 @@ function App() {
   const [userData] = useState(null);
 
 
-  // const isLoggedIn = Auth.loggedIn();
+  const isLoggedIn = Auth.loggedIn();
+  console.log(isLoggedIn)
 
   // console.log(isLoggedIn)
 console.log(client)
@@ -58,7 +60,7 @@ console.log(client)
   return (
     <ApolloProvider client={client}>
 
-    <div>
+    <div >
        
     <Router>
       <ResponsiveAppBar />
@@ -69,7 +71,7 @@ console.log(client)
       <Route path="/signup" element={<Signup /> } />
       <Route path="/search" element={<Search />} />
       <Route path="/account" element={<Account />} />
-      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/dashboard" element={<Dashboard  />} />
       <Route path="/dashboard/:id" element={<Dashboard />} />
 
       <Route path="/newthing" element={<NewThing />} />
