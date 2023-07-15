@@ -67,9 +67,11 @@ console.log(client)
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login /> } />
       <Route path="/signup" element={<Signup /> } />
-      <Route path="/search" element={<Search client={client} />} />
+      <Route path="/search" element={<Search />} />
       <Route path="/account" element={<Account />} />
       <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/dashboard/:id" element={<Dashboard />} />
+
       <Route path="/newthing" element={<NewThing />} />
       </Routes>
       <Footer />
