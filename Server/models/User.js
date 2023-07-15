@@ -23,10 +23,16 @@ const userSchema = new Schema({
   },
   savedBills: [
     {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: 'Search'
     }
   ]
+})
+
+userSchema.virtual('savedBillsData', {
+  ref: 'Search',
+  localField: 'savedBills',
+  foreignField: '_id'
 })
 
 userSchema.pre('save', async function (next) {

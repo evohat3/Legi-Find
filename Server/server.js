@@ -7,13 +7,13 @@ const db = require('./config/connection')
 
 const PORT = process.env.PORT || 3001
 const app = express()
+
+// this is where the typeDefs and resolvers talk between the front end and the back end
+// via the authMiddleware
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: ({ req, res }) => {
-    // Call the authMiddleware function and return its result
-    return authMiddleware({ req, res })
-  }
+  context: authMiddleware
 })
 
 app.use(express.urlencoded({ extended: false }))
