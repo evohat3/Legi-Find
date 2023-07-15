@@ -1,26 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Auth from '../utils/auth';
-
+import SavedSearches from '../components/SavedSearches';
 import SearchPageLite from '../components/SearchByState';
+import Grid from "@mui/material/Grid";
 import 'animate.css';
-// this is the query function that will find a user object
-import {FIND_USER} from '../utils/queries'
-// we use these to invoke either the mutations or quieries to send to our graphql
-import { useMutation, useQuery } from '@apollo/client';
-import heroImage from '../components/assets/row-old-textbooks-fills-antique-bookshelf-generated-by-ai.jpg'
+import { useQuery } from '@apollo/client';
+import { FIND_USER } from '../utils/queries';
+import heroImage from '../components/assets/row-old-textbooks-fills-antique-bookshelf-generated-by-ai.jpg';
 import { Paper } from '@mui/material';
-// we can use link to navigate to future components/pages
-// import { Link } from '@mui/material/Link'
-import {useParams} from 'react-router-dom'
-//The useNavigate will automatically navigate to what ever route you put it
-//when it is rendered
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import Button from "@mui/material/Button";
-
-
 
 const styles ={ 
   paperContainer: {
@@ -29,68 +21,77 @@ const styles ={
 }
 
 export default function Dashboard() {
+  const id = useParams();
+  const navigate = useNavigate();
+  const { loading, data } = useQuery(FIND_USER, {
+    variables: id,
+  });
 
-const {id} = useParams()
-console.log(id)
+  console.log(data);
 
-  // this state will set state of either showing the search box
-  // or the quick search button
   const [showComponent, setShowComponent] = useState(false);
-
-// this is the function that toggles the state on click 
-   const handleClick = () => {
+  const handleClick = () => {
     setShowComponent(true);
   };
-// Auth.logged in returns true if your logged in or false if not
-// put that data to a variable caled isLoggedin
-const isLoggedIn = Auth.loggedIn
-// invoked the useNavigate and pointed it to the navigate variable
-  const navigate = useNavigate();
 
+  const isLoggedIn = Auth.loggedIn;
 
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate('/'); // Redirect to home page if not logged in
+    }
+  }, [isLoggedIn, navigate]);
 
-  if (!isLoggedIn) {
-    navigate('/'); // Redirect to 'if not logged in
-  } 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
-    
-   
+  const savedBills = data?.findUser?.savedBills || [];
+  const user = data?.findUser || [];
 
-    return (
-      
-      <Paper style={styles.paperContainer}>
+  const savedSearchData = savedBills.map(savedBill => ({
+    billId: savedBill.billId,
+    billNumber: savedBill.billNumber,
+    changeHash: savedBill.changeHash,
+    lastAction: savedBill.lastAction,
+    lastActionDate: savedBill.lastActionDate,
+    relevance: savedBill.relevance,
+    researchUrl: savedBill.researchUrl,
+    state: savedBill.state,
+    textUrl: savedBill.textUrl,
+    title: savedBill.title,
+    url: savedBill.url
+  }));
+
+  return (
+    <Paper sx={{height: 1300, }} style={styles.paperContainer}>
       <Box
         sx={{
-          height: 600,
-          width: '100%',
+          height: 1000,
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
+          flexDirection: 'column'
         }}
       >
-        <Container sx={{ bgcolor: 'primary.main', color: 'white', height: 500, boxShadow: '5px 5px 5px rgba(0, 0, 0, 0.2)' }} className='animate__animated animate__backInLeft'>
-          <Typography  variant="h3" align="center" >
-            Welcome to Legi-Find! 
-            
-
-            
+        <Container sx={{ bgcolor: 'primary.main', color: 'white', height: 300, boxShadow: '5px 5px 5px rgba(0, 0, 0, 0.2)' }} className='animate__animated animate__backInLeft'>
+          <Typography  variant="h3" align="center">
+            Welcome to Legi-Find {user.first}!
           </Typography>
           {showComponent ? (
-                
-                <Box
-                className="animate__animated animate__backInRight"
-                  sx={{
-                    justifyContent: "center",
-                    alignItems: "center",
-                    border: "1px solid black",
-
-                  }}
-                >
-                  <SearchPageLite />
-                </Box>
-              
-            ) : (
-              <div>
+            <Box
+              className="animate__animated animate__backInRight"
+              sx={{
+                justifyContent: "center",
+                alignItems: "center",
+                border: "1px solid black",
+              }}
+            >
+              {/* Render the SearchPageLite component here */}
+              <SearchPageLite />
+            </Box>
+          ) : (
+            <div>
               <Button
                 className="animate__animated animate__backInRight animate__delay-3s"
                 sx={{
@@ -104,32 +105,20 @@ const isLoggedIn = Auth.loggedIn
               >
                 Quick Search by State
               </Button> 
-               {/* Render the button when showComponent is false */}
-              {/* <Button
-              className="animate__animated animate__backInRight animate__delay-4s"
-              sx={{
-                justifyContent: "center",
-                alignItems: "center",
-                color: "white",
-                background: 'black',
-                "&:hover": { backgroundColor: "white", color: "black" },
-              }}
-              onClick={handleClick}
-            >
-              Quick Search by Bill ID
-            </Button> */}
             </div>
-            )}
-
-          
+          )}
         </Container>
-
-        <Container variant="h3" backgroundcolor="black" color="white" align="center">
-          Welcome
+        <Container>
+          <Grid container spacing={6}>
+            {savedSearchData.map((savedSearch) => (
+              <Grid item xs={12} sm={6} md={4} lg={3} key={savedSearch.billId}>
+                {/* Render the SavedSearches component here */}
+                <SavedSearches savedSearch={savedSearch} />
+              </Grid>
+            ))}
+          </Grid>
         </Container>
       </Box>
-      </Paper>
-      
-    );
-  }
-
+    </Paper>
+  );
+}
