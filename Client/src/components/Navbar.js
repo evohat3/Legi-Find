@@ -16,8 +16,8 @@ import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
 import 'animate.css';
 import Switch from '@mui/material/Switch';
-import { useQuery } from '@apollo/client';
-import { QUERY_ME } from '../utils/queries';
+// import { useQuery } from '@apollo/client';
+// import { QUERY_ME } from '../utils/queries';
 
 
 function ResponsiveAppBar() {
@@ -26,10 +26,6 @@ function ResponsiveAppBar() {
 const settings = ['Profile', 'Account', 'Home' ,'Search', 'News', 'SignUp', 'Login', 'Dashboard', 'Logout',];
 
   const isLoggedIn = Auth.loggedIn();
-  const { loading, error, data } = useQuery(QUERY_ME);
-  const user = data?.me;
-
-  console.log(user)
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
