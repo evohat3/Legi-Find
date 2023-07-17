@@ -24,7 +24,7 @@ export default function Dashboard() {
   const id = useParams();
   const navigate = useNavigate();
   const { loading, data } = useQuery(FIND_USER, {
-    variables: id,
+    variables: { id: id.id },
   });
 
   console.log(data);
@@ -47,7 +47,7 @@ export default function Dashboard() {
   }
 
   const savedBills = data?.findUser?.savedBills || [];
-  const user = data?.findUser || [];
+  const user = data?.findUser || {};
 
   const savedSearchData = savedBills.map(savedBill => ({
     billId: savedBill.billId,
