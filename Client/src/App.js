@@ -52,10 +52,10 @@ function App() {
 
 
   const isLoggedIn = Auth.loggedIn();
-  console.log(isLoggedIn)
+  // console.log(isLoggedIn)
 
   // console.log(isLoggedIn)
-console.log(client)
+// console.log(client)
 
   return (
     <ApolloProvider client={client}>

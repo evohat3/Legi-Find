@@ -153,6 +153,13 @@ const settings = ['Profile', 'Account', 'Home' ,'Search', 'News', 'SignUp', 'Log
 
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
       {pages.map((page) => {
+
+        if (isLoggedIn) {
+          const userdata = Auth.getUser()
+          const user = userdata.user.data._id
+
+          // console.log(user)
+       
         if ((page === 'SignUp' || page === 'Login' || page === 'Home') && isLoggedIn) {
           // Skip rendering "SignUp" and "Login" if user is logged in
           return null;
@@ -174,7 +181,7 @@ const settings = ['Profile', 'Account', 'Home' ,'Search', 'News', 'SignUp', 'Log
               page === 'News' ? '/news' :
               page === 'Login' ? '/login' :
               page === 'SignUp' ? '/signup' :
-              page === 'Dashboard' ? `/dashboard` :
+              page === 'Dashboard' ? `/dashboard/${user}` :
               undefined
             }
             sx={{
@@ -188,7 +195,7 @@ const settings = ['Profile', 'Account', 'Home' ,'Search', 'News', 'SignUp', 'Log
           
   
         );
-        
+          }
       })}
     </Box>
 
