@@ -60,6 +60,7 @@ console.log(Auth.getToken())
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
@@ -68,15 +69,21 @@ console.log(Auth.getToken())
     }
     setValidated(true);
     try {
-      // console.log('userFormData:', userFormData);
+      console.log('userFormData:', userFormData);
       const { data } = await login({
         variables: { ...userFormData },
       });
 
+      const id = data.login.user._id
       // console.log('this is the user login data below')
-      // console.log(data)
+      console.log(id)
+
+
+
+  
       
       Auth.login(data.login.token);
+      window.location.assign(`/dashboard/${id}`);
     } catch (err) {
       console.error(err);
       setShowAlert(true);
