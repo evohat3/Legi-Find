@@ -37,7 +37,7 @@ const styles ={
 
 const Login = () => {
 
-
+console.log(Auth.getToken())
   const isLoggedIn = Auth.loggedIn();
 
   // console.log(isLoggedIn)

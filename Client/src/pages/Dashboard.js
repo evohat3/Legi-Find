@@ -27,7 +27,7 @@ export default function Dashboard() {
     variables: { id: id.id },
   });
 
-  console.log(data);
+  // console.log(data);
 
   const [showComponent, setShowComponent] = useState(false);
   const handleClick = () => {

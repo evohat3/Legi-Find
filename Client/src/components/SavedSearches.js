@@ -11,7 +11,7 @@ const SavedSearches = (user, savedSearches) => {
 
 const savedSearch = user.savedSearch
 
-console.log(savedSearch)
+// console.log(savedSearch)
 
 return (
   <div>
