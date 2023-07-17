@@ -58,7 +58,6 @@ class AuthService {
     const id = user.data._id
     window.location.assign(`/dashboard/${id}`);
 
-    window.location.assign('/');
   }
 
   logout() {
@@ -66,6 +65,7 @@ class AuthService {
     localStorage.removeItem('id_token');
     // this will reload the page and reset the state of the application
     window.location.reload();
+    window.location.assign('/');
   }
 }
 
