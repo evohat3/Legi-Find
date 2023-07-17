@@ -45,10 +45,6 @@ class AuthService {
     localStorage.setItem('id_token', idToken);
     //gets profile from login token and grabs the mongo db _id field for the user
     // and puts it in the URL as a param in dashboard do that we can render user specific data
-    const user = Auth.getProfile()
-    const id = user.data._id
-    window.location.assign(`/dashboard/${id}`);
-
   }
 
   addUser(idToken) {
