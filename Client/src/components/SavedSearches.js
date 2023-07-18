@@ -1,22 +1,20 @@
-import React, { useState } from "react";
-import Box from '@mui/material/Box';
+import React from "react";
+
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { Container, margin, maxWidth } from "@mui/system";
+import { Container} from "@mui/system";
 
-const SavedSearches = (user, savedSearches) => {
-
-const savedSearch = user.savedSearch
-
+const SavedSearches = ( {savedSearch} ) => {
 console.log(savedSearch)
-
 return (
   <div>
 
-      <Card key={savedSearch.billId} sx={{marginTop: 2,}}>
+      <Card 
+      key={savedSearch.billId} sx={{marginTop: 2,}}
+      >
         <CardContent>
 
           <Typography variant="h5" component="div">

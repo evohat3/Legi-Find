@@ -1,7 +1,7 @@
 import  React, { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Alert from '@mui/material/Alert';
+// import Alert from '@mui/material/Alert';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
@@ -38,7 +38,7 @@ const styles ={
 const Login = () => {
 
 console.log(Auth.getToken())
-  const isLoggedIn = Auth.loggedIn();
+  // const isLoggedIn = Auth.loggedIn();
 
   // console.log(isLoggedIn)
 
@@ -74,16 +74,19 @@ console.log(Auth.getToken())
         variables: { ...userFormData },
       });
 
-      const id = data.login.user._id
-      // console.log('this is the user login data below')
-      console.log(id)
+//  **** this grabs the user _id from the login object
+      // const id = data.login.user._id
+      // console.log(id)
 
 
 
   
       
       Auth.login(data.login.token);
-      window.location.assign(`/dashboard/${id}`);
+
+      // redirects to the dashboard/:id route using the 
+      // login object user _id as param
+      // window.location.assign(`/dashboard/${id}`);
     } catch (err) {
       console.error(err);
       setShowAlert(true);
